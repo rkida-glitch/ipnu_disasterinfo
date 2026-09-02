@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>石川県立看護大学 防災情報モニター</title>
+  <link rel="stylesheet" href="./styles.css?v=2.1" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1 id="dashboardTitle">石川県立看護大学 防災情報モニター</h1>
+      <div id="statusBadge" class="status-badge status-normal">通常</div>
+    </div>
+    <div class="clock-wrap">
+      <div id="date">時刻取得中...</div>
+      <div id="time">--:--:--</div>
+    </div>
+  </header>
+
+  <main class="dashboard-grid">
+    <section class="panel panel-video">
+      <div class="panel-head">
+        <h2>地震リアルタイム情報</h2>
+        <span>YouTube LIVE</span>
+      </div>
+      <div class="panel-body video-wrap">
+        <iframe
+          id="youtubeFrame"
+          src="https://www.youtube.com/embed/-e9TSb8gu84?autoplay=1&mute=1&controls=1&playsinline=1&rel=0"
+          title="地震リアルタイム情報"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="panel panel-warning">
+      <div class="panel-head">
+        <h2>石川県 気象警報・注意報</h2>
+        <span id="warningUpdated">β版デモデータ</span>
+      </div>
+      <div class="panel-body warning-body">
+        <div id="warningGrid" class="warning-grid">
+          <div class="muni-row"><div class="muni-name">読込中</div><div class="chips"><span class="chip chip-none">データ準備中</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-message">
+      <div class="panel-head">
+        <h2>メッセージ</h2>
+        <span id="messageLevelLabel">INFORMATION</span>
+      </div>
+      <div class="panel-body message-body">
+        <div id="messageCard" class="message-card message-normal">
+          <h3 id="messageTitle">大学からのお知らせ</h3>
+          <p id="messageBody">現在、大学からの緊急のお知らせはありません。</p>
+          <div id="messageSub">災害時には、この欄に学内向け情報や安否確認の案内を表示します。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel-rain">
+      <div class="panel-head">
+        <h2>石川県 今後の雨</h2>
+        <span>独自雨雲マップ β</span>
+      </div>
+      <div class="panel-body rain-body">
+        <div class="rain-map-placeholder">
+          <div class="ishikawa-outline">石川県</div>
+          <div class="rain-note">
+            <strong>Phase 2 接続予定</strong>
+            <span>気象庁データを用いた石川県中心の雨雲・降水予測表示</span>
+          </div>
+          <div class="legend">
+            <span>弱</span>
+            <div class="legend-bar"></div>
+            <span>強</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>情報源：気象庁・各防災情報提供元</span>
+    <span id="systemState">β2.1：起動中...</span>
+  </footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const CONFIG = {
+    title: "石川県立看護大学 防災情報モニター",
+    message: {
+      level: "normal",
+      title: "大学からのお知らせ",
+      body: "現在、大学からの緊急のお知らせはありません。",
+      sub: "災害時には、この欄に学内向け情報や安否確認の案内を表示します。"
+    },
+    warningsDemo: [
+      {name:"輪島市", warnings:["大雨警報","雷注意報"]},
+      {name:"珠洲市", warnings:["雷注意報"]},
+      {name:"穴水町", warnings:[]},
+      {name:"能登町", warnings:[]},
+      {name:"七尾市", warnings:["大雨注意報"]},
+      {name:"羽咋市", warnings:[]},
+      {name:"志賀町", warnings:[]},
+      {name:"宝達志水町", warnings:[]},
+      {name:"中能登町", warnings:[]},
+      {name:"金沢市", warnings:["雷注意報"]},
+      {name:"かほく市", warnings:[]},
+      {name:"津幡町", warnings:[]},
+      {name:"内灘町", warnings:[]},
+      {name:"小松市", warnings:[]},
+      {name:"加賀市", warnings:[]},
+      {name:"白山市", warnings:[]},
+      {name:"能美市", warnings:[]},
+      {name:"野々市市", warnings:[]},
+      {name:"川北町", warnings:[]}
+    ]
+  };
+
+  try {
+    document.getElementById("dashboardTitle").textContent = CONFIG.title;
+
+    function updateClock(){
+      const now = new Date();
+      document.getElementById("date").textContent =
+        new Intl.DateTimeFormat("ja-JP", {
+          timeZone:"Asia/Tokyo", year:"numeric", month:"long", day:"numeric", weekday:"short"
+        }).format(now);
+
+      document.getElementById("time").textContent =
+        new Intl.DateTimeFormat("ja-JP", {
+          timeZone:"Asia/Tokyo", hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false
+        }).format(now);
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    const msg = CONFIG.message;
+    document.getElementById("messageTitle").textContent = msg.title;
+    document.getElementById("messageBody").textContent = msg.body;
+    document.getElementById("messageSub").textContent = msg.sub;
+
+    function warningType(text){
+      if(text.includes("特別警報")) return "special";
+      if(text.includes("警報")) return "warning";
+      if(text.includes("注意報")) return "advisory";
+      return "none";
+    }
+
+    const warningGrid = document.getElementById("warningGrid");
+    warningGrid.innerHTML = "";
+    let overall = "normal";
+
+    CONFIG.warningsDemo.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "muni-row";
+
+      const name = document.createElement("div");
+      name.className = "muni-name";
+      name.textContent = item.name;
+
+      const chips = document.createElement("div");
+      chips.className = "chips";
+
+      if(item.warnings.length === 0){
+        const chip = document.createElement("span");
+        chip.className = "chip chip-none";
+        chip.textContent = "発表なし";
+        chips.appendChild(chip);
+      } else {
+        item.warnings.forEach(w => {
+          const type = warningType(w);
+          const chip = document.createElement("span");
+          chip.className = `chip chip-${type}`;
+          chip.textContent = w;
+          chips.appendChild(chip);
+
+          if(type === "special") overall = "special";
+          else if(type === "warning" && overall !== "special") overall = "warning";
+          else if(type === "advisory" && overall === "normal") overall = "advisory";
+        });
+      }
+      row.appendChild(name);
+      row.appendChild(chips);
+      warningGrid.appendChild(row);
+    });
+
+    const statusBadge = document.getElementById("statusBadge");
+    statusBadge.className = "status-badge";
+    if(overall === "special"){
+      statusBadge.classList.add("status-special");
+      statusBadge.textContent = "特別警報発表中";
+    } else if(overall === "warning"){
+      statusBadge.classList.add("status-warning");
+      statusBadge.textContent = "警報発表中";
+    } else if(overall === "advisory"){
+      statusBadge.classList.add("status-advisory");
+      statusBadge.textContent = "注意報発表中";
+    } else {
+      statusBadge.classList.add("status-normal");
+      statusBadge.textContent = "通常";
+    }
+
+    document.getElementById("systemState").textContent =
+      "β2.1：画面処理正常／警報・雨雲はデモ表示";
+  } catch (err) {
+    console.error(err);
+    document.getElementById("systemState").textContent =
+      "画面処理エラー：" + err.message;
+  }
+})();
+</script>
+</body>
+</html>
