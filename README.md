@@ -21,10 +21,7 @@ Web画面はこのJSONを読み込みます。
 - 気象庁 `rasrf` 降水短時間予報タイルを表示
 - 現在付近～6時間先を約5秒間隔でアニメーション
 
-## GitHubへのアップロード
-
-ZIP内のフォルダ構造をそのままリポジトリへアップロードしてください。
-
+## GitHub上のファイル
 必要ファイル：
 - index.html
 - styles.css
@@ -40,7 +37,7 @@ GitHubのリポジトリで：
 2. `Update JMA warnings`
 3. `Run workflow`
 
-を実行してください。
+を実行
 
 成功すると `data/warnings.json` が自動更新され、その後は5分ごとに更新されます。
 
@@ -51,7 +48,7 @@ Settings → Actions → General → Workflow permissions で
 を許可してください。
 
 ## Pages
-これまで通りGitHub Pagesは main / root で公開可能です。
+これまで通りGitHub Pagesは main / root で公開可能
 
 ## 注意
 GitHub Actionsのscheduleは厳密に5分間隔で起動する保証はなく、
