@@ -61,7 +61,7 @@
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
-      <div dlass="video-source">
+      <div class="video-source">
         映像出典：「【JQuake】地震速報放送24時間」さま
       </div>
     </div>
@@ -555,10 +555,10 @@ loadRain();
 // 高解像度降水ナウキャストは5分更新なので5分ごとに再取得
 setInterval(loadRain,5*60*1000);
 
-// 30分後にページ全体再読み込み
+// 10分後にページ全体再読み込み
 setTimeout(() => {
   window.location.reload();
-}, 60 * 30 * 1000);
+}, 60 * 10 * 1000);
 
 })();
 </script>
