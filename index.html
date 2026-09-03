@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>石川県立看護大学 災害実践看護学 防災情報モニター</title>
+  <title>石川県立看護大学 防災情報モニター</title>
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         crossorigin="">
-  <link rel="stylesheet" href="./styles.css?v=4.0">
+  <link rel="stylesheet" href="./styles.css?v=4.4">
 </head>
 <body>
 <header class="topbar">
   <div>
-    <h1>石川県立看護大学 災害実践看護学 防災情報モニター</h1>
-    <div id="statusBadge" class="status-badge status-normal">リアルタイム情報取得中</div>
+    <h1>石川県立看護大学 防災情報モニター</h1>
+    <div id="statusBadge" class="status-badge status-normal">情報取得中</div>
   </div>
   <div class="clock-wrap">
     <div id="date">--</div>
@@ -60,10 +60,9 @@
     </div>
     <div class="panel-body message-body">
       <div class="message-card message-normal">
-        <h3>災害実践看護学からのお知らせ</h3>
-        <p>現在、石川県全域に注意報・警報が発令されています。</p>
-        <p>各自の大雨タイムラインを確認し、早めの避難行動をとりましょう。</p>
-        <div id="messageSub">災害時には、この欄に学内向け情報などを表示します。</div>
+        <h3>大学からのお知らせ</h3>
+        <p>現在、大学からの緊急のお知らせはありません。</p>
+        <div id="messageSub">災害時には、この欄に学内向け情報や安否確認の案内を表示します。</div>
       </div>
     </div>
   </section>
@@ -78,7 +77,7 @@
         <div id="rainMap"></div>
         <div class="rain-map-overlay">
           <div id="rainForecastLabel" class="forecast-label">取得中</div>
-          <div id="rainForecastSub" class="forecast-sub">高解像度降水ナウキャスト（気象庁）</div>
+          <div id="rainForecastSub" class="forecast-sub">高解像度降水ナウキャスト（気象庁）</div><div class="forecast-sub">固定表示：石川県全域 / Zoom 8</div>
         </div>
         <div class="rain-legend">
           1時間降水量 (mm/h)
@@ -100,7 +99,7 @@
 
 <footer>
   <span>情報源：気象庁・国土地理院・YouTube</span>
-  <span id="systemState">β4：気象庁公式XML＋降水短時間予報</span>
+  <span id="systemState">β4.4：固定範囲・固定Zoom</span>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -262,28 +261,63 @@ function jstHM(d){
   }).format(d);
 }
 
+const FIXED_MAP_CENTER = [36.78, 136.78];
+const FIXED_MAP_ZOOM = 8;
+
 const map=L.map("rainMap",{
-  zoomControl:false, attributionControl:false,
-  dragging:false, scrollWheelZoom:false, doubleClickZoom:false,
-  boxZoom:false, keyboard:false, tap:false
+  zoomControl:false,
+  attributionControl:false,
+  dragging:false,
+  scrollWheelZoom:false,
+  doubleClickZoom:false,
+  boxZoom:false,
+  keyboard:false,
+  tap:false,
+  touchZoom:false,
+  zoomSnap:1,
+  zoomDelta:1,
+  preferCanvas:false
 });
 
-// 石川県全域＋周辺海域を固定表示
-map.fitBounds([[35.95,135.95],[37.65,137.65]], {padding:[8,8]});
+// 端末サイズ・DPIに依存せず、必ず同一中心・同一ズームで表示
+map.setView(FIXED_MAP_CENTER, FIXED_MAP_ZOOM, {animate:false});
+
+// レイヤー順を端末依存にしないため専用paneを固定
+map.createPane("basePane");
+map.getPane("basePane").style.zIndex = 100;
+
+map.createPane("rainPane");
+map.getPane("rainPane").style.zIndex = 300;
+
+map.createPane("boundaryPane");
+map.getPane("boundaryPane").style.zIndex = 400;
 
 // 国土地理院 淡色地図
 const base=L.tileLayer(
   "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
-  {minZoom:4,maxZoom:14,maxNativeZoom:14}
+  {
+    minZoom:4,
+    maxZoom:14,
+    maxNativeZoom:14,
+    pane:"basePane",
+    updateWhenIdle:true,
+    keepBuffer:2
+  }
 ).addTo(map);
-base.setZIndex(100);
 
 // 気象庁の行政界マスク
 const mask=L.tileLayer(
   "https://www.jma.go.jp/bosai/jmatile/data/map/none/none/none/surf/mask/{z}/{x}/{y}.png",
-  {minZoom:3,maxZoom:14,maxNativeZoom:14,opacity:0.92}
+  {
+    minZoom:3,
+    maxZoom:14,
+    maxNativeZoom:14,
+    opacity:0.92,
+    pane:"boundaryPane",
+    updateWhenIdle:true,
+    keepBuffer:2
+  }
 ).addTo(map);
-mask.setZIndex(400);
 
 let currentFrame=null;
 let forecastFrames=[];
@@ -301,12 +335,15 @@ function renderRainFrame(frame, mode, progress=0){
 
   if(rain) map.removeLayer(rain);
   rain=L.tileLayer(nowcTileUrl(frame),{
-    minZoom:4,maxZoom:14,maxNativeZoom:10,
-    opacity:0.78,
+    minZoom:FIXED_MAP_ZOOM,
+    maxZoom:FIXED_MAP_ZOOM,
+    maxNativeZoom:FIXED_MAP_ZOOM,
+    opacity:0.90,
+    pane:"rainPane",
+    updateWhenIdle:true,
+    keepBuffer:2,
     errorTileUrl:"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
   }).addTo(map);
-  rain.setZIndex(300);
-  mask.bringToFront();
 
   const valid=parseJmaUtc(frame.validtime);
   const baseTime=parseJmaUtc(frame.basetime);
@@ -425,8 +462,12 @@ async function loadRain(){
   }
 }
 
-setTimeout(()=>map.invalidateSize(),300);
-window.addEventListener("resize",()=>map.invalidateSize());
+function enforceFixedMap(){
+  map.invalidateSize({animate:false});
+  map.setView(FIXED_MAP_CENTER, FIXED_MAP_ZOOM, {animate:false});
+}
+setTimeout(enforceFixedMap,300);
+window.addEventListener("resize",enforceFixedMap);
 
 loadRain();
 // 高解像度降水ナウキャストは5分更新なので5分ごとに再取得
