@@ -187,3 +187,16 @@ footer{
 .leaflet-control-zoom{display:none !important}
 .leaflet-control-attribution{display:none !important}
 .leaflet-container{font-family:inherit;background:#0c1e2b}
+
+/* β4 fixes */
+.warning-stale{
+  color:#ffd889 !important;
+}
+.rain-map-container{background:#dbe7ef;}
+.rain-map-overlay{min-width:180px}
+.rain-error{
+  position:absolute;z-index:900;inset:0;display:none;align-items:center;justify-content:center;
+  padding:24px;text-align:center;background:rgba(7,17,31,.86);color:#ffcccc;
+  font-size:clamp(13px,.9vw,18px)
+}
+.rain-error.show{display:flex}

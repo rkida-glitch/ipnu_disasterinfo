@@ -1,19 +1,15 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>石川県立看護大学 防災情報モニター</title>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIINfQ3ynbKmq6orITMZ9ME3zaaCqjR0BtA="
-        crossorigin="" />
-  <link rel="stylesheet" href="./styles.css?v=3.0" />
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin="">
+  <link rel="stylesheet" href="./styles.css?v=4.0">
 </head>
-
 <body>
 <header class="topbar">
   <div>
@@ -27,8 +23,6 @@
 </header>
 
 <main class="dashboard-grid">
-
-  <!-- 左上：地震リアルタイム -->
   <section class="panel panel-video">
     <div class="panel-head">
       <h2>地震リアルタイム情報</h2>
@@ -40,12 +34,10 @@
         title="地震リアルタイム情報"
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
+        allowfullscreen></iframe>
     </div>
   </section>
 
-  <!-- 右上：警報・注意報 -->
   <section class="panel panel-warning">
     <div class="panel-head">
       <h2>石川県 気象警報・注意報</h2>
@@ -56,12 +48,11 @@
     </div>
     <div class="panel-body warning-body">
       <div id="warningGrid" class="warning-grid">
-        <div class="warning-error">気象庁データを取得しています...</div>
+        <div class="warning-error">警報・注意報データを取得しています...</div>
       </div>
     </div>
   </section>
 
-  <!-- 左下：メッセージ -->
   <section class="panel panel-message">
     <div class="panel-head">
       <h2>メッセージ</h2>
@@ -76,7 +67,6 @@
     </div>
   </section>
 
-  <!-- 右下：今後の雨 -->
   <section class="panel panel-rain">
     <div class="panel-head">
       <h2>石川県 今後の雨</h2>
@@ -85,466 +75,313 @@
     <div class="panel-body rain-body">
       <div class="rain-map-container">
         <div id="rainMap"></div>
-
         <div class="rain-map-overlay">
-          <div id="rainForecastLabel" class="forecast-label">予報時刻を取得中</div>
-          <div id="rainForecastSub" class="forecast-sub">気象庁「今後の雨」</div>
+          <div id="rainForecastLabel" class="forecast-label">取得中</div>
+          <div id="rainForecastSub" class="forecast-sub">降水短時間予報（気象庁）</div>
         </div>
-
         <div class="rain-legend">
           1時間降水量 (mm/h)
           <div class="rain-legend-scale"></div>
         </div>
-
         <div class="rain-progress">
           <div id="rainProgressTime" class="rain-progress-time">--:--</div>
           <div class="rain-progress-track">
             <div id="rainProgressBar" class="rain-progress-bar"></div>
           </div>
         </div>
-
-        <div class="rain-attribution">地図・降水データ：気象庁</div>
+        <div class="rain-attribution">背景地図：国土地理院 ／ 降水データ：気象庁</div>
         <div id="rainLoading" class="rain-loading">降水予報データを取得しています...</div>
+        <div id="rainError" class="rain-error"></div>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <span>情報源：気象庁（警報・注意報／降水短時間予報）・YouTube</span>
-  <span id="systemState">β3 LIVE：実データ接続</span>
+  <span>情報源：気象庁・国土地理院・YouTube</span>
+  <span id="systemState">β4：気象庁公式XML＋降水短時間予報</span>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 (() => {
-  "use strict";
+"use strict";
 
-  // ============================================================
-  // 設定
-  // ============================================================
-  const JMA_WARNING_URL =
-    "https://www.jma.go.jp/bosai/warning/data/warning/170000.json";
+const MUNICIPALITIES = [
+  ["1720400","輪島市"], ["1720500","珠洲市"],
+  ["1746100","穴水町"], ["1746300","能登町"],
+  ["1720200","七尾市"], ["1720700","羽咋市"],
+  ["1738400","志賀町"], ["1738600","宝達志水町"],
+  ["1740700","中能登町"],
+  ["1720100","金沢市"], ["1720900","かほく市"],
+  ["1736100","津幡町"], ["1736500","内灘町"],
+  ["1720300","小松市"], ["1720600","加賀市"],
+  ["1721000","白山市"], ["1721100","能美市"],
+  ["1721200","野々市市"], ["1732400","川北町"]
+];
 
-  const JMA_RAIN_TIMES_URL =
-    "https://www.jma.go.jp/bosai/jmatile/data/rasrf/targetTimes.json";
+const RAIN_TIMES =
+  "https://www.jma.go.jp/bosai/jmatile/data/rasrf/targetTimes.json";
 
-  const WARNING_REFRESH_MS = 5 * 60 * 1000;
-  const RAIN_TIMES_REFRESH_MS = 10 * 60 * 1000;
-  const RAIN_FRAME_MS = 4500;
+// ------------------------------------------------------------
+// Clock
+// ------------------------------------------------------------
+function tick(){
+  const now = new Date();
+  document.getElementById("date").textContent =
+    new Intl.DateTimeFormat("ja-JP",{
+      timeZone:"Asia/Tokyo",year:"numeric",month:"long",day:"numeric",weekday:"short"
+    }).format(now);
+  document.getElementById("time").textContent =
+    new Intl.DateTimeFormat("ja-JP",{
+      timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false
+    }).format(now);
+}
+tick(); setInterval(tick,1000);
 
-  // 石川県19市町（全国地方公共団体コード）
-  const MUNICIPALITIES = [
-    ["1720400","輪島市"], ["1720500","珠洲市"],
-    ["1746100","穴水町"], ["1746300","能登町"],
-    ["1720200","七尾市"], ["1720700","羽咋市"],
-    ["1738400","志賀町"], ["1738600","宝達志水町"],
-    ["1740700","中能登町"],
+// ------------------------------------------------------------
+// Warnings: generated by GitHub Actions from JMA VPWS50 XML
+// ------------------------------------------------------------
+function warningType(name){
+  if(!name) return "none";
+  if(name.includes("特別警報") || name.includes("危険警報")) return "special";
+  if(name.includes("警報")) return "warning";
+  if(name.includes("注意報")) return "advisory";
+  return "none";
+}
 
-    ["1720100","金沢市"], ["1720900","かほく市"],
-    ["1736100","津幡町"], ["1736500","内灘町"],
-    ["1720300","小松市"], ["1720600","加賀市"],
-    ["1721000","白山市"], ["1721100","能美市"],
-    ["1721200","野々市市"], ["1732400","川北町"]
-  ];
-
-  // 気象庁 警報・注意報コード
-  // 2026年体系の「危険警報」コードも含む
-  const WARNING_NAMES = {
-    "02":"暴風雪警報",
-    "03":"大雨警報",
-    "04":"洪水警報",
-    "05":"暴風警報",
-    "06":"大雪警報",
-    "07":"波浪警報",
-    "08":"高潮警報",
-    "09":"土砂災害警報",
-
-    "10":"大雨注意報",
-    "12":"大雪注意報",
-    "13":"風雪注意報",
-    "14":"雷注意報",
-    "15":"強風注意報",
-    "16":"波浪注意報",
-    "17":"融雪注意報",
-    "18":"洪水注意報",
-    "19":"高潮注意報",
-    "20":"濃霧注意報",
-    "21":"乾燥注意報",
-    "22":"なだれ注意報",
-    "23":"低温注意報",
-    "24":"霜注意報",
-    "25":"着氷注意報",
-    "26":"着雪注意報",
-    "27":"その他注意報",
-    "29":"土砂災害注意報",
-
-    "32":"暴風雪特別警報",
-    "33":"大雨特別警報",
-    "35":"暴風特別警報",
-    "36":"大雪特別警報",
-    "37":"波浪特別警報",
-    "38":"高潮特別警報",
-    "39":"土砂災害特別警報",
-
-    "42":"暴風雪危険警報",
-    "43":"大雨危険警報",
-    "45":"暴風危険警報",
-    "46":"大雪危険警報",
-    "47":"波浪危険警報",
-    "48":"高潮危険警報",
-    "49":"土砂災害危険警報"
-  };
-
-  // ============================================================
-  // 時計
-  // ============================================================
-  function updateClock() {
-    const now = new Date();
-    document.getElementById("date").textContent =
-      new Intl.DateTimeFormat("ja-JP", {
-        timeZone:"Asia/Tokyo",
-        year:"numeric", month:"long", day:"numeric", weekday:"short"
-      }).format(now);
-
-    document.getElementById("time").textContent =
-      new Intl.DateTimeFormat("ja-JP", {
-        timeZone:"Asia/Tokyo",
-        hour:"2-digit", minute:"2-digit", second:"2-digit",
-        hour12:false
-      }).format(now);
+function setOverall(overall){
+  const b = document.getElementById("statusBadge");
+  b.className = "status-badge";
+  if(overall==="special"){
+    b.classList.add("status-special"); b.textContent="特別警報・危険警報発表中";
+  }else if(overall==="warning"){
+    b.classList.add("status-warning"); b.textContent="警報発表中";
+  }else if(overall==="advisory"){
+    b.classList.add("status-advisory"); b.textContent="注意報発表中";
+  }else{
+    b.classList.add("status-normal"); b.textContent="警報・注意報なし";
   }
-  updateClock();
-  setInterval(updateClock, 1000);
+}
 
-  // ============================================================
-  // 警報・注意報
-  // ============================================================
-  function warningType(code) {
-    const n = Number(code);
-    if ((n >= 32 && n <= 39)) return "special";
-    if ((n >= 42 && n <= 49)) return "special"; // 危険警報は最上位表示
-    if (n >= 2 && n <= 9) return "warning";
-    if (n >= 10 && n <= 29) return "advisory";
-    return "none";
-  }
+async function loadWarnings(){
+  const grid = document.getElementById("warningGrid");
+  const updated = document.getElementById("warningUpdated");
+  const dot = document.getElementById("warningLiveDot");
 
-  function isActiveWarning(w) {
-    if (!w || !w.code) return false;
-    const s = String(w.status || "");
-    if (s.includes("解除")) return false;
-    if (s.includes("なし")) return false;
-    return true;
-  }
+  try{
+    const r = await fetch("./data/warnings.json?t="+Date.now(), {cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const data = await r.json();
 
-  function formatJst(datetime) {
-    try {
-      return new Intl.DateTimeFormat("ja-JP", {
-        timeZone:"Asia/Tokyo", hour:"2-digit", minute:"2-digit"
-      }).format(new Date(datetime));
-    } catch {
-      return "--:--";
-    }
-  }
+    if(!data.ok) throw new Error(data.error || "データ未取得");
 
-  async function loadWarnings() {
-    const dot = document.getElementById("warningLiveDot");
-    const updated = document.getElementById("warningUpdated");
-    const grid = document.getElementById("warningGrid");
+    const byCode = new Map((data.municipalities||[]).map(x=>[x.code,x]));
+    grid.innerHTML="";
+    let overall="normal";
 
-    dot.className = "live-dot loading";
-    updated.textContent = "更新中";
+    MUNICIPALITIES.forEach(([code,name])=>{
+      const item = byCode.get(code) || {warnings:[]};
+      const warnings = Array.isArray(item.warnings) ? item.warnings : [];
 
-    try {
-      const res = await fetch(JMA_WARNING_URL + "?t=" + Date.now(), {
-        cache:"no-store"
-      });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      const row=document.createElement("div");
+      row.className="muni-row";
+      const n=document.createElement("div");
+      n.className="muni-name"; n.textContent=name;
+      const chips=document.createElement("div");
+      chips.className="chips";
 
-      const data = await res.json();
+      if(!warnings.length){
+        const c=document.createElement("span");
+        c.className="chip chip-none"; c.textContent="発表なし";
+        chips.appendChild(c);
+      }else{
+        warnings.forEach(w=>{
+          const type=warningType(w.name);
+          const c=document.createElement("span");
+          c.className="chip chip-"+type;
+          c.textContent=w.name;
+          chips.appendChild(c);
 
-      // 市町村レベルは areaTypes の中で、19市町コードを持つものを採用
-      const muniCodeSet = new Set(MUNICIPALITIES.map(x => x[0]));
-      let municipalityAreas = [];
-
-      for (const type of (data.areaTypes || [])) {
-        const candidates = (type.areas || []).filter(a => muniCodeSet.has(a.code));
-        if (candidates.length) {
-          municipalityAreas = candidates;
-          break;
-        }
+          if(type==="special") overall="special";
+          else if(type==="warning" && overall!=="special") overall="warning";
+          else if(type==="advisory" && overall==="normal") overall="advisory";
+        });
       }
+      row.append(n,chips); grid.appendChild(row);
+    });
 
-      const byCode = new Map(municipalityAreas.map(a => [a.code, a]));
-      grid.innerHTML = "";
-      let overall = "normal";
+    setOverall(overall);
+    dot.className="live-dot";
 
-      for (const [code, name] of MUNICIPALITIES) {
-        const area = byCode.get(code);
-        const active = (area?.warnings || []).filter(isActiveWarning);
-
-        const row = document.createElement("div");
-        row.className = "muni-row";
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "muni-name";
-        nameEl.textContent = name;
-
-        const chips = document.createElement("div");
-        chips.className = "chips";
-
-        if (active.length === 0) {
-          const chip = document.createElement("span");
-          chip.className = "chip chip-none";
-          chip.textContent = "発表なし";
-          chips.appendChild(chip);
-        } else {
-          for (const w of active) {
-            const type = warningType(w.code);
-            const chip = document.createElement("span");
-            chip.className = "chip chip-" + type;
-            chip.textContent = WARNING_NAMES[w.code] || ("警報等 " + w.code);
-            chips.appendChild(chip);
-
-            if (type === "special") overall = "special";
-            else if (type === "warning" && overall !== "special") overall = "warning";
-            else if (type === "advisory" && overall === "normal") overall = "advisory";
-          }
-        }
-
-        row.appendChild(nameEl);
-        row.appendChild(chips);
-        grid.appendChild(row);
-      }
-
-      // 全県ステータス
-      const badge = document.getElementById("statusBadge");
-      badge.className = "status-badge";
-
-      if (overall === "special") {
-        badge.classList.add("status-special");
-        badge.textContent = "特別警報・危険警報発表中";
-      } else if (overall === "warning") {
-        badge.classList.add("status-warning");
-        badge.textContent = "警報発表中";
-      } else if (overall === "advisory") {
-        badge.classList.add("status-advisory");
-        badge.textContent = "注意報発表中";
-      } else {
-        badge.classList.add("status-normal");
-        badge.textContent = "警報・注意報なし";
-      }
-
-      dot.className = "live-dot";
-      updated.textContent =
-        formatJst(data.reportDatetime) + " 発表";
-
-      document.getElementById("systemState").textContent =
-        "β3 LIVE：気象庁実データ取得中";
-
-    } catch (err) {
-      console.error("Warning fetch error:", err);
-      dot.className = "live-dot error";
-      updated.textContent = "取得失敗";
-      grid.innerHTML =
-        '<div class="warning-error">気象庁の警報・注意報データを取得できません。自動的に再試行します。</div>';
-
-      const badge = document.getElementById("statusBadge");
-      badge.className = "status-badge status-warning";
-      badge.textContent = "情報取得エラー";
+    const report = data.report_datetime ? new Date(data.report_datetime) : null;
+    if(report && !isNaN(report)){
+      updated.textContent=new Intl.DateTimeFormat("ja-JP",{
+        timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit"
+      }).format(report)+" 集約";
+    } else {
+      updated.textContent="最新";
     }
-  }
 
-  // ============================================================
-  // 降水短時間予報（JMA tile）
-  // ============================================================
-  function parseJmaUtc(s) {
-    // JMA tile timestamp: YYYYMMDDHHMMSS (UTC)
-    return new Date(Date.UTC(
-      Number(s.slice(0,4)),
-      Number(s.slice(4,6))-1,
-      Number(s.slice(6,8)),
-      Number(s.slice(8,10)),
-      Number(s.slice(10,12)),
-      Number(s.slice(12,14))
-    ));
-  }
-
-  function jstTimeLabel(d) {
-    return new Intl.DateTimeFormat("ja-JP", {
-      timeZone:"Asia/Tokyo",
-      hour:"2-digit", minute:"2-digit"
-    }).format(d);
-  }
-
-  function jstDateTimeLabel(d) {
-    return new Intl.DateTimeFormat("ja-JP", {
-      timeZone:"Asia/Tokyo",
-      month:"numeric", day:"numeric",
-      hour:"2-digit", minute:"2-digit"
-    }).format(d);
-  }
-
-  const map = L.map("rainMap", {
-    zoomControl:false,
-    attributionControl:false,
-    dragging:false,
-    scrollWheelZoom:false,
-    doubleClickZoom:false,
-    boxZoom:false,
-    keyboard:false,
-    tap:false
-  });
-
-  // 石川県全域を見せる固定表示
-  map.setView([36.80, 136.82], 8);
-
-  // 気象庁配下の淡色地図
-  L.tileLayer(
-    "https://www.jma.go.jp/tile/gsi/pale/{z}/{x}/{y}.png",
-    {
-      maxZoom: 12,
-      minZoom: 5,
-      opacity: 1
+    // stale check: 30 min以上古い場合は黄色表示
+    if(report && (Date.now()-report.getTime()) > 30*60*1000){
+      dot.className="live-dot loading";
+      updated.classList.add("warning-stale");
+      updated.textContent += "（更新確認中）";
     }
-  ).addTo(map);
 
-  // 行政界・海岸線を上に表示
-  L.tileLayer(
-    "https://www.jma.go.jp/bosai/jmatile/data/map/none/none/none/surf/mask/{z}/{x}/{y}.png",
-    {
-      maxZoom: 12,
-      minZoom: 5,
-      opacity: 0.85
-    }
-  ).addTo(map);
+  }catch(e){
+    console.error(e);
+    dot.className="live-dot error";
+    updated.textContent="取得失敗";
+    grid.innerHTML='<div class="warning-error">警報・注意報データを取得できません。GitHub Actionsの実行状況を確認してください。</div>';
+    const b=document.getElementById("statusBadge");
+    b.className="status-badge status-warning";
+    b.textContent="情報取得エラー";
+  }
+}
+loadWarnings();
+setInterval(loadWarnings, 3*60*1000);
 
-  let rainFrames = [];
-  let rainIndex = 0;
-  let rainLayer = null;
-  let rainTimer = null;
+// ------------------------------------------------------------
+// Rain map
+// JMA timestamps are treated as JST clock strings.
+// ------------------------------------------------------------
+function parseJmaJst(s){
+  // "YYYYMMDDHHMMSS" = JST clock time
+  const y=+s.slice(0,4), mo=+s.slice(4,6)-1, d=+s.slice(6,8);
+  const h=+s.slice(8,10), mi=+s.slice(10,12), se=+s.slice(12,14);
+  return new Date(Date.UTC(y,mo,d,h-9,mi,se));
+}
+function jstHM(d){
+  return new Intl.DateTimeFormat("ja-JP",{
+    timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hour12:false
+  }).format(d);
+}
 
-  function makeRainTileUrl(frame) {
-    return (
-      "https://www.jma.go.jp/bosai/jmatile/data/rasrf/" +
-      frame.basetime + "/none/" +
-      frame.validtime +
-      "/surf/rasrf/{z}/{x}/{y}.png"
+const map=L.map("rainMap",{
+  zoomControl:false, attributionControl:false,
+  dragging:false, scrollWheelZoom:false, doubleClickZoom:false,
+  boxZoom:false, keyboard:false, tap:false
+});
+
+// 石川県全域を必ず収める
+map.fitBounds([[35.95,136.05],[37.65,137.65]], {padding:[8,8]});
+
+// 安定した国土地理院淡色地図
+const base=L.tileLayer(
+  "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
+  {minZoom:4,maxZoom:14,maxNativeZoom:14}
+).addTo(map);
+base.setZIndex(100);
+
+// 気象庁行政界マスク（透明）
+const mask=L.tileLayer(
+  "https://www.jma.go.jp/bosai/jmatile/data/map/none/none/none/surf/mask/{z}/{x}/{y}.png",
+  {minZoom:3,maxZoom:14,maxNativeZoom:14,opacity:0.9}
+).addTo(map);
+mask.setZIndex(400);
+
+let frames=[], idx=0, rain=null, timer=null;
+
+function tileUrl(f){
+  return "https://www.jma.go.jp/bosai/jmatile/data/rasrf/"
+    +f.basetime+"/none/"+f.validtime+"/surf/rasrf/{z}/{x}/{y}.png";
+}
+
+function renderFrame(i){
+  if(!frames.length) return;
+  idx=(i+frames.length)%frames.length;
+  const f=frames[idx];
+
+  if(rain) map.removeLayer(rain);
+  rain=L.tileLayer(tileUrl(f),{
+    minZoom:4,maxZoom:14,maxNativeZoom:10,
+    opacity:0.82,
+    errorTileUrl:"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+  }).addTo(map);
+  rain.setZIndex(300);
+  mask.bringToFront();
+
+  const valid=parseJmaJst(f.validtime);
+  const now=new Date();
+  const dm=Math.round((valid-now)/60000);
+  let desc;
+  if(Math.abs(dm)<=15) desc="現在付近";
+  else if(dm>0) desc=(dm<60 ? dm+"分先" : (Math.round(dm/6)/10)+"時間先");
+  else desc="実況";
+
+  document.getElementById("rainForecastLabel").textContent=jstHM(valid)+"　"+desc;
+  document.getElementById("rainProgressTime").textContent=jstHM(valid);
+  document.getElementById("rainProgressBar").style.width=((idx+1)/frames.length*100)+"%";
+}
+
+async function loadRain(){
+  const loading=document.getElementById("rainLoading");
+  const error=document.getElementById("rainError");
+  error.classList.remove("show");
+  try{
+    const r=await fetch(RAIN_TIMES+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const raw=await r.json();
+    const now=new Date();
+
+    // 実況に近い時刻から6時間先まで。
+    // member none / immed の双方を使用する。
+    let a=raw.filter(x=>
+      Array.isArray(x.elements) &&
+      x.elements.includes("rasrf") &&
+      x.basetime && x.validtime
     );
-  }
 
-  function showRainFrame(index) {
-    if (!rainFrames.length) return;
-    rainIndex = index % rainFrames.length;
-    const f = rainFrames[rainIndex];
+    // validtimeごとに1件。より新しいbasetimeを優先
+    const m=new Map();
+    a.forEach(x=>{
+      const old=m.get(x.validtime);
+      if(!old || x.basetime>old.basetime) m.set(x.validtime,x);
+    });
+    a=[...m.values()].sort((x,y)=>x.validtime.localeCompare(y.validtime));
 
-    if (rainLayer) map.removeLayer(rainLayer);
+    // JSTとして時刻判定
+    const start=new Date(now.getTime()-30*60*1000);
+    const end=new Date(now.getTime()+6*60*60*1000);
+    frames=a.filter(x=>{
+      const v=parseJmaJst(x.validtime);
+      return v>=start && v<=end;
+    });
 
-    rainLayer = L.tileLayer(makeRainTileUrl(f), {
-      maxZoom: 12,
-      minZoom: 5,
-      opacity: 0.72
-    }).addTo(map);
-
-    // 行政界を常に降水レイヤーより上に
-    rainLayer.setZIndex(300);
-
-    const valid = parseJmaUtc(f.validtime);
-    const now = new Date();
-    const diffMin = Math.round((valid - now) / 60000);
-
-    let desc;
-    if (Math.abs(diffMin) <= 15) desc = "現在付近";
-    else if (diffMin > 0) desc = Math.round(diffMin/60*10)/10 + "時間先";
-    else desc = "実況";
-
-    document.getElementById("rainForecastLabel").textContent =
-      jstTimeLabel(valid) + "　" + desc;
-    document.getElementById("rainForecastSub").textContent =
-      "降水短時間予報（気象庁）";
-    document.getElementById("rainProgressTime").textContent =
-      jstTimeLabel(valid);
-    document.getElementById("rainProgressBar").style.width =
-      ((rainIndex + 1) / rainFrames.length * 100) + "%";
-  }
-
-  async function loadRainTimes() {
-    const loading = document.getElementById("rainLoading");
-
-    try {
-      const res = await fetch(JMA_RAIN_TIMES_URL + "?t=" + Date.now(), {
-        cache:"no-store"
-      });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-
-      const raw = await res.json();
-      const now = new Date();
-      const from = new Date(now.getTime() - 20*60*1000);
-      const to = new Date(now.getTime() + 6*60*60*1000);
-
-      // rasrf を含み、現在付近～6時間先を採用
-      const candidates = raw
-        .filter(x =>
-          (x.elements || []).includes("rasrf") &&
-          parseJmaUtc(x.validtime) >= from &&
-          parseJmaUtc(x.validtime) <= to
-        )
-        .sort((a,b) => parseJmaUtc(a.validtime) - parseJmaUtc(b.validtime));
-
-      // validtime重複を除去
-      const seen = new Set();
-      rainFrames = candidates.filter(x => {
-        if (seen.has(x.validtime)) return false;
-        seen.add(x.validtime);
-        return true;
-      });
-
-      if (!rainFrames.length) {
-        throw new Error("表示可能な予報時刻がありません");
-      }
-
-      // 最初は現在に最も近いフレーム
-      let nearest = 0;
-      let best = Infinity;
-      rainFrames.forEach((f,i) => {
-        const d = Math.abs(parseJmaUtc(f.validtime) - now);
-        if (d < best) { best=d; nearest=i; }
-      });
-
-      showRainFrame(nearest);
-      loading.classList.add("hidden");
-
-      const latestBase = parseJmaUtc(rainFrames[0].basetime);
-      document.getElementById("rainUpdated").textContent =
-        "気象庁　" + jstTimeLabel(latestBase) + " 基準";
-
-      if (rainTimer) clearInterval(rainTimer);
-      rainTimer = setInterval(() => {
-        showRainFrame((rainIndex + 1) % rainFrames.length);
-      }, RAIN_FRAME_MS);
-
-    } catch (err) {
-      console.error("Rain fetch error:", err);
-      loading.classList.remove("hidden");
-      loading.textContent =
-        "降水予報データを取得できません。自動的に再試行します。";
-      document.getElementById("rainUpdated").textContent = "取得失敗";
+    // 予報一覧が疎な場合は、現在以降の先頭7件をフォールバック
+    if(frames.length<2){
+      frames=a.filter(x=>parseJmaJst(x.validtime)>=start).slice(0,7);
     }
+    if(!frames.length) throw new Error("表示可能な予報時刻がありません");
+
+    let nearest=0,best=Infinity;
+    frames.forEach((f,i)=>{
+      const d=Math.abs(parseJmaJst(f.validtime)-now);
+      if(d<best){best=d;nearest=i;}
+    });
+    renderFrame(nearest);
+
+    const baseTime=parseJmaJst(frames[nearest].basetime);
+    document.getElementById("rainUpdated").textContent="気象庁 "+jstHM(baseTime)+" 基準";
+    loading.classList.add("hidden");
+
+    if(timer) clearInterval(timer);
+    timer=setInterval(()=>renderFrame(idx+1),5000);
+
+  }catch(e){
+    console.error(e);
+    loading.classList.add("hidden");
+    error.textContent="降水短時間予報を取得できません："+e.message;
+    error.classList.add("show");
+    document.getElementById("rainUpdated").textContent="取得失敗";
   }
-
-  // Leaflet sizing after layout
-  setTimeout(() => map.invalidateSize(), 300);
-  window.addEventListener("resize", () => map.invalidateSize());
-
-  // 初回 + 定期更新
-  loadWarnings();
-  loadRainTimes();
-
-  setInterval(loadWarnings, WARNING_REFRESH_MS);
-  setInterval(loadRainTimes, RAIN_TIMES_REFRESH_MS);
+}
+setTimeout(()=>map.invalidateSize(),300);
+window.addEventListener("resize",()=>map.invalidateSize());
+loadRain();
+setInterval(loadRain,10*60*1000);
 
 })();
 </script>
