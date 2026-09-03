@@ -106,3 +106,84 @@ footer{
   display:flex;align-items:center;justify-content:space-between;padding:0 1vw;color:var(--muted);
   border-top:1px solid var(--line);font-size:clamp(10px,.7vw,13px)
 }
+
+
+/* ===== β3 LIVE additions ===== */
+.warning-source{
+  display:flex;align-items:center;gap:8px
+}
+.live-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 8px rgba(68,193,122,.8);display:inline-block
+}
+.live-dot.error{background:var(--alert);box-shadow:0 0 8px rgba(239,91,91,.8)}
+.live-dot.loading{background:var(--warning);box-shadow:0 0 8px rgba(241,198,68,.8)}
+
+.warning-error{
+  grid-column:1/-1;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(239,91,91,.5);
+  border-radius:10px;background:rgba(239,91,91,.08);
+  color:#ffb2b2;font-size:clamp(13px,.9vw,18px);
+  padding:12px;text-align:center
+}
+
+#rainMap{
+  width:100%;height:100%;background:#0c1e2b;
+}
+.rain-map-container{
+  position:relative;width:100%;height:100%;overflow:hidden;border-radius:10px;
+  border:1px solid #2b4c67;background:#0c1e2b
+}
+.rain-map-overlay{
+  position:absolute;z-index:700;left:12px;top:12px;
+  background:rgba(5,16,26,.85);border:1px solid rgba(255,255,255,.18);
+  border-radius:9px;padding:8px 11px;pointer-events:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.25)
+}
+.rain-map-overlay .forecast-label{
+  font-weight:800;font-size:clamp(14px,1vw,19px)
+}
+.rain-map-overlay .forecast-sub{
+  margin-top:3px;color:#bed0df;font-size:clamp(10px,.7vw,13px)
+}
+.rain-progress{
+  position:absolute;z-index:700;left:12px;right:12px;bottom:10px;
+  display:flex;align-items:center;gap:9px;pointer-events:none
+}
+.rain-progress-time{
+  min-width:50px;padding:5px 7px;border-radius:7px;background:rgba(5,16,26,.83);
+  font-weight:700;font-size:clamp(10px,.7vw,13px);text-align:center
+}
+.rain-progress-track{
+  height:6px;flex:1;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden
+}
+.rain-progress-bar{
+  height:100%;width:0;background:#68c7ff;border-radius:999px;transition:width .25s linear
+}
+.rain-legend{
+  position:absolute;z-index:700;right:12px;top:12px;
+  padding:7px 9px;border-radius:8px;background:rgba(5,16,26,.83);
+  pointer-events:none;font-size:10px;color:#e8f3fb
+}
+.rain-legend-scale{
+  margin-top:5px;width:145px;height:9px;border-radius:999px;
+  background:linear-gradient(90deg,#b6f3ff,#4cb7ff,#42d7b7,#f2e35c,#f59b4b,#ef5454,#bc4bd4)
+}
+.rain-loading{
+  position:absolute;z-index:800;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(7,17,31,.78);color:#d9ebf8;
+  font-size:clamp(14px,1vw,20px)
+}
+.rain-loading.hidden{display:none}
+.rain-attribution{
+  position:absolute;z-index:700;right:8px;bottom:30px;
+  font-size:9px;color:#c5d4df;background:rgba(5,16,26,.72);
+  padding:3px 5px;border-radius:4px;pointer-events:none
+}
+
+/* Leaflet dark integration */
+.leaflet-control-zoom{display:none !important}
+.leaflet-control-attribution{display:none !important}
+.leaflet-container{font-family:inherit;background:#0c1e2b}
