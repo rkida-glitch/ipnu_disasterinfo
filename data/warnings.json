@@ -1,1 +1,6 @@
-
+{
+  "ok": false,
+  "error": "GitHub Actionsを1回実行してください",
+  "generated_at": null,
+  "municipalities": []
+}
