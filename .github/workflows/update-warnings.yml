@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch JMA VPWS50 and build JSON
+      - name: Fetch JMA VPWW55-61 and build JSON
         run: python scripts/update_warnings.py
 
       - name: Show generated JSON
