@@ -60,9 +60,11 @@
     </div>
     <div class="panel-body message-body">
       <div class="message-card message-normal">
-        <h3>大学からのお知らせ</h3>
+        <h3>災害実践看護学からのお知らせ</h3>
         <p>現在、大学からの緊急のお知らせはありません。</p>
-        <div id="messageSub">災害時には、この欄に学内向け情報や安否確認の案内を表示します。</div>
+        <p>石川県全域に警報・注意報が発令されています。</p>
+        <p>身の安全を最優先し、早めの避難行動をとりましょう。</p>
+        <div id="messageSub">災害時には、この欄に学内向け情報などを表示します。</div>
       </div>
     </div>
   </section>
@@ -472,6 +474,11 @@ window.addEventListener("resize",enforceFixedMap);
 loadRain();
 // 高解像度降水ナウキャストは5分更新なので5分ごとに再取得
 setInterval(loadRain,5*60*1000);
+
+// 60分後にページ全体を再読み込み
+setTimeout(() => {
+  window.location.reload();
+}, 60 * 60 * 1000);
 })();
 </script>
 </body>
