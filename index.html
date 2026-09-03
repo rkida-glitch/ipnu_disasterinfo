@@ -69,15 +69,15 @@
 
   <section class="panel panel-rain">
     <div class="panel-head">
-      <h2>石川県 今後の雨</h2>
-      <span id="rainUpdated">気象庁 降水短時間予報</span>
+      <h2>石川県 雨雲の動き・今後1時間</h2>
+      <span id="rainUpdated">気象庁 高解像度降水ナウキャスト</span>
     </div>
     <div class="panel-body rain-body">
       <div class="rain-map-container">
         <div id="rainMap"></div>
         <div class="rain-map-overlay">
           <div id="rainForecastLabel" class="forecast-label">取得中</div>
-          <div id="rainForecastSub" class="forecast-sub">降水短時間予報（気象庁）</div>
+          <div id="rainForecastSub" class="forecast-sub">高解像度降水ナウキャスト（気象庁）</div>
         </div>
         <div class="rain-legend">
           1時間降水量 (mm/h)
@@ -120,8 +120,10 @@ const MUNICIPALITIES = [
   ["1721200","野々市市"], ["1732400","川北町"]
 ];
 
-const RAIN_TIMES =
-  "https://www.jma.go.jp/bosai/jmatile/data/rasrf/targetTimes.json";
+const NOWC_OBS_TIMES =
+  "https://www.jma.go.jp/bosai/jmatile/data/nowc/targetTimes_N1.json";
+const NOWC_FCST_TIMES =
+  "https://www.jma.go.jp/bosai/jmatile/data/nowc/targetTimes_N2.json";
 
 // ------------------------------------------------------------
 // Clock
@@ -244,14 +246,14 @@ loadWarnings();
 setInterval(loadWarnings, 3*60*1000);
 
 // ------------------------------------------------------------
-// Rain map
-// JMA timestamps are treated as JST clock strings.
+// Rain map: JMA high-resolution precipitation nowcast (hrpns)
+// N1 = latest/past observations, N2 = forecasts up to 1 hour.
+// JMA timestamp strings are UTC; display is converted to JST.
 // ------------------------------------------------------------
-function parseJmaJst(s){
-  // "YYYYMMDDHHMMSS" = JST clock time
+function parseJmaUtc(s){
   const y=+s.slice(0,4), mo=+s.slice(4,6)-1, d=+s.slice(6,8);
   const h=+s.slice(8,10), mi=+s.slice(10,12), se=+s.slice(12,14);
-  return new Date(Date.UTC(y,mo,d,h-9,mi,se));
+  return new Date(Date.UTC(y,mo,d,h,mi,se));
 }
 function jstHM(d){
   return new Intl.DateTimeFormat("ja-JP",{
@@ -265,124 +267,169 @@ const map=L.map("rainMap",{
   boxZoom:false, keyboard:false, tap:false
 });
 
-// 石川県全域を必ず収める
-map.fitBounds([[35.95,136.05],[37.65,137.65]], {padding:[8,8]});
+// 石川県全域＋周辺海域を固定表示
+map.fitBounds([[35.95,135.95],[37.65,137.65]], {padding:[8,8]});
 
-// 安定した国土地理院淡色地図
+// 国土地理院 淡色地図
 const base=L.tileLayer(
   "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
   {minZoom:4,maxZoom:14,maxNativeZoom:14}
 ).addTo(map);
 base.setZIndex(100);
 
-// 気象庁行政界マスク（透明）
+// 気象庁の行政界マスク
 const mask=L.tileLayer(
   "https://www.jma.go.jp/bosai/jmatile/data/map/none/none/none/surf/mask/{z}/{x}/{y}.png",
-  {minZoom:3,maxZoom:14,maxNativeZoom:14,opacity:0.9}
+  {minZoom:3,maxZoom:14,maxNativeZoom:14,opacity:0.92}
 ).addTo(map);
 mask.setZIndex(400);
 
-let frames=[], idx=0, rain=null, timer=null;
+let currentFrame=null;
+let forecastFrames=[];
+let rain=null;
+let animationTimer=null;
+let forecastIndex=-1;
 
-function tileUrl(f){
-  return "https://www.jma.go.jp/bosai/jmatile/data/rasrf/"
-    +f.basetime+"/none/"+f.validtime+"/surf/rasrf/{z}/{x}/{y}.png";
+function nowcTileUrl(f){
+  return "https://www.jma.go.jp/bosai/jmatile/data/nowc/"
+    +f.basetime+"/none/"+f.validtime+"/surf/hrpns/{z}/{x}/{y}.png";
 }
 
-function renderFrame(i){
-  if(!frames.length) return;
-  idx=(i+frames.length)%frames.length;
-  const f=frames[idx];
+function renderRainFrame(frame, mode, progress=0){
+  if(!frame) return;
 
   if(rain) map.removeLayer(rain);
-  rain=L.tileLayer(tileUrl(f),{
+  rain=L.tileLayer(nowcTileUrl(frame),{
     minZoom:4,maxZoom:14,maxNativeZoom:10,
-    opacity:0.82,
+    opacity:0.78,
     errorTileUrl:"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
   }).addTo(map);
   rain.setZIndex(300);
   mask.bringToFront();
 
-  const valid=parseJmaJst(f.validtime);
-  const now=new Date();
-  const dm=Math.round((valid-now)/60000);
-  let desc;
-  if(Math.abs(dm)<=15) desc="現在付近";
-  else if(dm>0) desc=(dm<60 ? dm+"分先" : (Math.round(dm/6)/10)+"時間先");
-  else desc="実況";
+  const valid=parseJmaUtc(frame.validtime);
+  const baseTime=parseJmaUtc(frame.basetime);
 
-  document.getElementById("rainForecastLabel").textContent=jstHM(valid)+"　"+desc;
-  document.getElementById("rainProgressTime").textContent=jstHM(valid);
-  document.getElementById("rainProgressBar").style.width=((idx+1)/frames.length*100)+"%";
+  if(mode==="current"){
+    document.getElementById("rainForecastLabel").textContent =
+      jstHM(valid)+"　実況";
+    document.getElementById("rainForecastSub").textContent =
+      "高解像度降水ナウキャスト・最新解析";
+    document.getElementById("rainProgressTime").textContent =
+      jstHM(valid);
+    document.getElementById("rainProgressBar").style.width="0%";
+    document.getElementById("rainUpdated").textContent =
+      "気象庁 "+jstHM(baseTime)+" 実況";
+  }else{
+    const currentValid=currentFrame ? parseJmaUtc(currentFrame.validtime) : new Date();
+    const minAhead=Math.max(0,Math.round((valid-currentValid)/60000));
+    document.getElementById("rainForecastLabel").textContent =
+      jstHM(valid)+"　"+minAhead+"分先";
+    document.getElementById("rainForecastSub").textContent =
+      "高解像度降水ナウキャスト・予測";
+    document.getElementById("rainProgressTime").textContent =
+      jstHM(valid);
+    document.getElementById("rainProgressBar").style.width =
+      Math.min(100,progress*100)+"%";
+  }
+}
+
+// サイネージでは実況を長めに見せ、予測は短く流す。
+// 実況 12秒 → 5分刻み予測を各2秒 → 実況へ戻る。
+function startRainAnimation(){
+  if(animationTimer) clearTimeout(animationTimer);
+
+  const showCurrent=()=>{
+    forecastIndex=-1;
+    renderRainFrame(currentFrame,"current",0);
+    animationTimer=setTimeout(showNextForecast,12000);
+  };
+
+  const showNextForecast=()=>{
+    if(!forecastFrames.length){
+      animationTimer=setTimeout(showCurrent,12000);
+      return;
+    }
+
+    forecastIndex++;
+    if(forecastIndex>=forecastFrames.length){
+      showCurrent();
+      return;
+    }
+
+    renderRainFrame(
+      forecastFrames[forecastIndex],
+      "forecast",
+      (forecastIndex+1)/forecastFrames.length
+    );
+    animationTimer=setTimeout(showNextForecast,2000);
+  };
+
+  showCurrent();
 }
 
 async function loadRain(){
   const loading=document.getElementById("rainLoading");
   const error=document.getElementById("rainError");
   error.classList.remove("show");
+
   try{
-    const r=await fetch(RAIN_TIMES+"?t="+Date.now(),{cache:"no-store"});
-    if(!r.ok) throw new Error("HTTP "+r.status);
-    const raw=await r.json();
-    const now=new Date();
+    const [rObs,rFcst]=await Promise.all([
+      fetch(NOWC_OBS_TIMES+"?t="+Date.now(),{cache:"no-store"}),
+      fetch(NOWC_FCST_TIMES+"?t="+Date.now(),{cache:"no-store"})
+    ]);
+    if(!rObs.ok) throw new Error("実況時刻 HTTP "+rObs.status);
+    if(!rFcst.ok) throw new Error("予測時刻 HTTP "+rFcst.status);
 
-    // 実況に近い時刻から6時間先まで。
-    // member none / immed の双方を使用する。
-    let a=raw.filter(x=>
-      Array.isArray(x.elements) &&
-      x.elements.includes("rasrf") &&
-      x.basetime && x.validtime
+    const obs=await rObs.json();
+    const fcst=await rFcst.json();
+
+    // N1は最新→過去の降順。先頭が最新実況。
+    currentFrame=(obs||[]).find(x =>
+      x.basetime && x.validtime &&
+      Array.isArray(x.elements) && x.elements.includes("hrpns")
     );
+    if(!currentFrame) throw new Error("最新実況データが見つかりません");
 
-    // validtimeごとに1件。より新しいbasetimeを優先
-    const m=new Map();
-    a.forEach(x=>{
-      const old=m.get(x.validtime);
-      if(!old || x.basetime>old.basetime) m.set(x.validtime,x);
-    });
-    a=[...m.values()].sort((x,y)=>x.validtime.localeCompare(y.validtime));
+    const currentValid=parseJmaUtc(currentFrame.validtime);
 
-    // JSTとして時刻判定
-    const start=new Date(now.getTime()-30*60*1000);
-    const end=new Date(now.getTime()+6*60*60*1000);
-    frames=a.filter(x=>{
-      const v=parseJmaJst(x.validtime);
-      return v>=start && v<=end;
+    // N2は予測。最新実況より未来のフレームだけを時刻昇順で採用。
+    const byValid=new Map();
+    (fcst||[]).forEach(x=>{
+      if(!x.basetime || !x.validtime) return;
+      if(!Array.isArray(x.elements) || !x.elements.includes("hrpns")) return;
+      const v=parseJmaUtc(x.validtime);
+      if(v<=currentValid) return;
+      const old=byValid.get(x.validtime);
+      if(!old || x.basetime>old.basetime) byValid.set(x.validtime,x);
     });
 
-    // 予報一覧が疎な場合は、現在以降の先頭7件をフォールバック
-    if(frames.length<2){
-      frames=a.filter(x=>parseJmaJst(x.validtime)>=start).slice(0,7);
-    }
-    if(!frames.length) throw new Error("表示可能な予報時刻がありません");
+    forecastFrames=[...byValid.values()]
+      .sort((a,b)=>a.validtime.localeCompare(b.validtime))
+      .filter(x=>{
+        const mins=(parseJmaUtc(x.validtime)-currentValid)/60000;
+        return mins>0 && mins<=60;
+      });
 
-    let nearest=0,best=Infinity;
-    frames.forEach((f,i)=>{
-      const d=Math.abs(parseJmaJst(f.validtime)-now);
-      if(d<best){best=d;nearest=i;}
-    });
-    renderFrame(nearest);
-
-    const baseTime=parseJmaJst(frames[nearest].basetime);
-    document.getElementById("rainUpdated").textContent="気象庁 "+jstHM(baseTime)+" 基準";
     loading.classList.add("hidden");
-
-    if(timer) clearInterval(timer);
-    timer=setInterval(()=>renderFrame(idx+1),5000);
+    renderRainFrame(currentFrame,"current",0);
+    startRainAnimation();
 
   }catch(e){
     console.error(e);
     loading.classList.add("hidden");
-    error.textContent="降水短時間予報を取得できません："+e.message;
+    error.textContent="雨雲データを取得できません："+e.message;
     error.classList.add("show");
     document.getElementById("rainUpdated").textContent="取得失敗";
   }
 }
+
 setTimeout(()=>map.invalidateSize(),300);
 window.addEventListener("resize",()=>map.invalidateSize());
-loadRain();
-setInterval(loadRain,10*60*1000);
 
+loadRain();
+// 高解像度降水ナウキャストは5分更新なので5分ごとに再取得
+setInterval(loadRain,5*60*1000);
 })();
 </script>
 </body>
