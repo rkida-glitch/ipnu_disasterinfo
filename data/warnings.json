@@ -1,6 +1,373 @@
 {
-  "ok": false,
-  "error": "GitHub Actionsを1回実行してください",
-  "generated_at": null,
-  "municipalities": []
+  "ok": true,
+  "source": "JMA VPWW55-61",
+  "report_datetime": "2026-09-03T09:11:00+09:00",
+  "generated_at": "2026-09-03T00:39:34.039643+00:00",
+  "source_reports": [
+    {
+      "product": "VPWW55",
+      "feed_updated": "2026-09-03T00:11:33Z",
+      "report_datetime": "2026-09-03T09:11:00+09:00",
+      "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260903001133_0_VPWW55_170000.xml"
+    },
+    {
+      "product": "VPWW56",
+      "feed_updated": "2026-09-02T21:43:39Z",
+      "report_datetime": "2026-09-03T06:43:00+09:00",
+      "control_title": "気象警報・注意報（Ｒ０６）（土砂）",
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260902214340_0_VPWW56_170000.xml"
+    },
+    {
+      "product": "VPWW61",
+      "feed_updated": "2026-09-01T21:41:20Z",
+      "report_datetime": "2026-09-02T06:41:00+09:00",
+      "control_title": "気象警報・注意報（Ｒ０６）（その他注意報）",
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260901214121_0_VPWW61_170000.xml"
+    }
+  ],
+  "municipalities": [
+    {
+      "code": "1720100",
+      "name": "金沢市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1720200",
+      "name": "七尾市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1720300",
+      "name": "小松市",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1720400",
+      "name": "輪島市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1720500",
+      "name": "珠洲市",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1720600",
+      "name": "加賀市",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1720700",
+      "name": "羽咋市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1720900",
+      "name": "かほく市",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1721000",
+      "name": "白山市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1721100",
+      "name": "能美市",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1721200",
+      "name": "野々市市",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1732400",
+      "name": "川北町",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1736100",
+      "name": "津幡町",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1736500",
+      "name": "内灘町",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        }
+      ]
+    },
+    {
+      "code": "1738400",
+      "name": "志賀町",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1738600",
+      "name": "宝達志水町",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1740700",
+      "name": "中能登町",
+      "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1746100",
+      "name": "穴水町",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    },
+    {
+      "code": "1746300",
+      "name": "能登町",
+      "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "継続"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
+        }
+      ]
+    }
+  ]
 }
