@@ -1,15 +1,15 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-03T21:29:00+09:00",
-  "generated_at": "2026-09-03T13:39:48.100679+00:00",
+  "report_datetime": "2026-09-04T01:28:00+09:00",
+  "generated_at": "2026-09-03T17:16:01.666498+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "feed_updated": "2026-09-03T12:29:45Z",
-      "report_datetime": "2026-09-03T21:29:00+09:00",
+      "feed_updated": "2026-09-03T16:28:30Z",
+      "report_datetime": "2026-09-04T01:28:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260903122946_0_VPWW55_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260903162831_0_VPWW55_170000.xml"
     },
     {
       "product": "VPWW56",
@@ -24,6 +24,10 @@
       "code": "1720100",
       "name": "金沢市",
       "warnings": [
+        {
+          "name": "レベル３大雨警報",
+          "status": "継続"
+        },
         {
           "name": "レベル２土砂災害注意報",
           "status": "継続"
@@ -105,6 +109,10 @@
       "name": "白山市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "レベル２土砂災害注意報",
           "status": "発表"
         }
@@ -155,6 +163,10 @@
       "name": "内灘町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "継続"
+        },
+        {
           "name": "レベル２土砂災害注意報",
           "status": "継続"
         }
@@ -176,7 +188,7 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "レベル２土砂災害注意報",
