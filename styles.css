@@ -200,3 +200,30 @@ footer{
   font-size:clamp(13px,.9vw,18px)
 }
 .rain-error.show{display:flex}
+
+/* 地震リアルタイム映像の出典表示 */
+.video-wrap {
+  position: relative;
+}
+
+.video-source {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  z-index: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #d9e6ef;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.video-source a {
+  color: #d9e6ef;
+  text-decoration: none;
+}
+
+.video-source a:hover {
+  text-decoration: underline;
+}
