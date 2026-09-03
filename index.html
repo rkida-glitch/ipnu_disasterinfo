@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>石川県立看護大学 防災情報モニター</title>
+  <title>石川県立看護大学 災害実践看護学 防災情報モニター</title>
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         crossorigin="">
@@ -36,7 +36,7 @@
 <body>
 <header class="topbar">
   <div>
-    <h1>石川県立看護大学 防災情報モニター</h1>
+    <h1>石川県立看護大学 災害実践看護学 防災情報モニター</h1>
     <div id="statusBadge" class="status-badge status-normal">情報取得中</div>
   </div>
   <div class="clock-wrap">
@@ -61,6 +61,9 @@
         allow="autoplay; encrypted-media; picture-in-picture"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
+      <div dlass="video-source">
+        映像出典：「【JQuake】地震速報放送24時間」さま
+      </div>
     </div>
   </section>
 
@@ -86,9 +89,11 @@
     </div>
     <div class="panel-body message-body">
       <div class="message-card message-normal">
-        <h3>大学からのお知らせ</h3>
+        <h3>講座からのお知らせ</h3>
         <p>現在、大学からの緊急のお知らせはありません。</p>
-        <div id="messageSub">災害時には、この欄に学内向け情報や安否確認の案内を表示します。</div>
+        <p>石川県全域に警報・注意報が発令されています。</p>
+        <p>身の安全を優先し、早めの避難行動をとりましょう。</p>
+        <div id="messageSub">災害時には、この欄に学内向け情報を表示します。</div>
       </div>
     </div>
   </section>
