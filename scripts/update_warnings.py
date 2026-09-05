@@ -163,6 +163,11 @@ def parse_ishikawa(xml_bytes):
         "control_title": control_title(root),
     }
 
+def is_ishikawa_url(url):
+    # JMA XML filename末尾の都道府県コード 170000 = 石川県
+    return bool(re.search(r"_170000\\.xml(?:$|[?#])", url, re.I))
+
+
 def main():
     entries = []
     feed_errors = []
@@ -189,15 +194,29 @@ def main():
         seen_urls.add(e["href"])
         unique_entries.append(e)
 
-    # データ種類ごとに「石川県を含む最新電文」を1つずつ採用。
+    # 全国の電文を上からN件たどるのではなく、URL上で石川県(170000)に
+    # 絞り込んでから処理する。全国的な荒天時でも石川県電文が押し出されない。
+    ishikawa_entries = [e for e in unique_entries if is_ishikawa_url(e["href"])]
+
+    if not ishikawa_entries:
+        raise RuntimeError(
+            "No Ishikawa (170000) VPWW55-61 entries found in JMA Atom feed."
+        )
+
+    # データ種類ごとに「石川県の最新電文」を1つずつ採用。
+    # 最新候補が想定外形式でも、同じproductの少し古い候補までフォールバックする。
     selected = {}
     debug_checked = []
+    attempts_per_product = {}
 
-    for e in unique_entries[:350]:
+    for e in ishikawa_entries:
         product = e["product"]
 
-        # 既にこの種類の石川県電文を取得済みならスキップ
         if product in selected:
+            continue
+
+        attempts_per_product[product] = attempts_per_product.get(product, 0) + 1
+        if attempts_per_product[product] > 10:
             continue
 
         try:
@@ -215,7 +234,7 @@ def main():
                     "parsed": parsed,
                 }
 
-            # 主要な7種類を全部取れたら終了
+            # VPWW55-61の7種類を全部取れたら終了
             if len(selected) >= 7:
                 break
 
@@ -225,11 +244,11 @@ def main():
             )
 
     if not selected:
-        print("Checked recent VPWW55-61 entries:")
+        print("Checked Ishikawa VPWW55-61 entries:")
         for row in debug_checked[-80:]:
             print(" | ".join(map(str, row)))
         raise RuntimeError(
-            "No recent VPWW55-61 document containing Ishikawa municipality codes was found."
+            "No VPWW55-61 document containing Ishikawa municipality codes was found."
         )
 
     # 各種類の最新石川県電文をマージ
@@ -289,6 +308,7 @@ def main():
     )
 
     print("SUCCESS: Ishikawa warning data generated")
+    print(f"Ishikawa feed entries: {len(ishikawa_entries)}")
     print("Selected source reports:")
     for s in source_reports:
         print(
@@ -313,14 +333,8 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(
-            json.dumps({
-                "ok": False,
-                "error": str(e),
-                "generated_at": datetime.now(timezone.utc).isoformat(),
-                "municipalities": [],
-            }, ensure_ascii=False, indent=2),
-            encoding="utf-8",
-        )
+        # 取得失敗時に最後の正常な warnings.json を壊さない。
+        # GitHub Actionsは失敗扱いにして通知し、フロント側は既存JSONを
+        # stale判定（更新時刻が古い）として扱えるようにする。
+        print(f"ERROR: {e}")
         raise
