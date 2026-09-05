@@ -165,7 +165,7 @@ def parse_ishikawa(xml_bytes):
 
 def is_ishikawa_url(url):
     # JMA XML filename末尾の都道府県コード 170000 = 石川県
-    return bool(re.search(r"_170000\\.xml(?:$|[?#])", url, re.I))
+    return bool(re.search(r"_170000\.xml(?:$|[?#])", url, re.I))
 
 
 def main():
