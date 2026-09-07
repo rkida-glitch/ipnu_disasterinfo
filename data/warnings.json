@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-06T16:16:00+09:00",
-  "generated_at": "2026-09-06T23:10:28.127454+00:00",
+  "report_datetime": "2026-09-07T08:13:00+09:00",
+  "generated_at": "2026-09-07T01:01:53.856109+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -20,10 +20,10 @@
     },
     {
       "product": "VPWW58",
-      "feed_updated": "2026-09-06T07:16:20Z",
-      "report_datetime": "2026-09-06T16:16:00+09:00",
+      "feed_updated": "2026-09-06T23:13:08Z",
+      "report_datetime": "2026-09-07T08:13:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（暴風）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260906071620_0_VPWW58_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260906231308_0_VPWW58_170000.xml"
     },
     {
       "product": "VPWW61",
@@ -42,12 +42,7 @@
     {
       "code": "1720200",
       "name": "七尾市",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720300",
@@ -57,22 +52,12 @@
     {
       "code": "1720400",
       "name": "輪島市",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720500",
       "name": "珠洲市",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720600",
@@ -82,12 +67,7 @@
     {
       "code": "1720700",
       "name": "羽咋市",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720900",
@@ -127,22 +107,12 @@
     {
       "code": "1738400",
       "name": "志賀町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1738600",
       "name": "宝達志水町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1740700",
@@ -152,22 +122,12 @@
     {
       "code": "1746100",
       "name": "穴水町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1746300",
       "name": "能登町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     }
   ]
 }
