@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-08T16:12:00+09:00",
-  "generated_at": "2026-09-08T15:04:55.673965+00:00",
+  "report_datetime": "2026-09-09T02:53:00+09:00",
+  "generated_at": "2026-09-08T18:36:25.254571+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -13,10 +13,10 @@
     },
     {
       "product": "VPWW56",
-      "feed_updated": "2026-09-03T19:19:19Z",
-      "report_datetime": "2026-09-04T04:19:00+09:00",
+      "feed_updated": "2026-09-08T17:53:19Z",
+      "report_datetime": "2026-09-09T02:53:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（土砂）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260903191920_0_VPWW56_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260908175319_0_VPWW56_170000.xml"
     },
     {
       "product": "VPWW58",
@@ -61,6 +61,10 @@
           "status": "発表"
         },
         {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "強風注意報",
           "status": "発表"
         },
@@ -97,6 +101,10 @@
           "status": "継続"
         },
         {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "強風注意報",
           "status": "発表"
         },
@@ -113,6 +121,10 @@
         {
           "name": "レベル２大雨注意報",
           "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
         },
         {
           "name": "強風注意報",
@@ -148,6 +160,10 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
           "status": "発表"
         },
         {
@@ -283,6 +299,10 @@
           "status": "発表"
         },
         {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "強風注意報",
           "status": "発表"
         },
@@ -298,6 +318,10 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
           "status": "発表"
         },
         {
@@ -319,6 +343,10 @@
           "status": "発表"
         },
         {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -331,6 +359,10 @@
         {
           "name": "レベル２大雨注意報",
           "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
         },
         {
           "name": "強風注意報",
@@ -349,6 +381,10 @@
         {
           "name": "レベル２大雨注意報",
           "status": "継続"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
         },
         {
           "name": "強風注意報",
