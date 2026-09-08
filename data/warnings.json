@@ -1,15 +1,15 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-08T04:34:00+09:00",
-  "generated_at": "2026-09-08T01:08:45.920262+00:00",
+  "report_datetime": "2026-09-08T14:53:00+09:00",
+  "generated_at": "2026-09-08T05:58:10.288523+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "feed_updated": "2026-09-03T19:19:19Z",
-      "report_datetime": "2026-09-04T04:19:00+09:00",
+      "feed_updated": "2026-09-08T05:53:00Z",
+      "report_datetime": "2026-09-08T14:53:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260903191920_0_VPWW55_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260908055301_0_VPWW55_170000.xml"
     },
     {
       "product": "VPWW56",
@@ -69,6 +69,10 @@
       "name": "輪島市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -78,6 +82,10 @@
       "code": "1720500",
       "name": "珠洲市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -209,6 +217,10 @@
       "name": "穴水町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -218,6 +230,10 @@
       "code": "1746300",
       "name": "能登町",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
