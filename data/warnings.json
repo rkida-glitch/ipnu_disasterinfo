@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-10T04:05:00+09:00",
-  "generated_at": "2026-09-10T01:18:32.072798+00:00",
+  "report_datetime": "2026-09-10T10:17:00+09:00",
+  "generated_at": "2026-09-10T06:05:50.314607+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -27,10 +27,10 @@
     },
     {
       "product": "VPWW59",
-      "feed_updated": "2026-09-09T19:05:36Z",
-      "report_datetime": "2026-09-10T04:05:00+09:00",
+      "feed_updated": "2026-09-10T01:17:49Z",
+      "report_datetime": "2026-09-10T10:17:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（波浪）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260909190537_0_VPWW59_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260910011749_0_VPWW59_170000.xml"
     },
     {
       "product": "VPWW61",
@@ -49,12 +49,7 @@
     {
       "code": "1720200",
       "name": "七尾市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720300",
@@ -134,22 +129,12 @@
     {
       "code": "1746100",
       "name": "穴水町",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1746300",
       "name": "能登町",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     }
   ]
 }
