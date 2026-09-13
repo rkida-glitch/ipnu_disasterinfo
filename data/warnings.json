@@ -1,22 +1,22 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-13T10:21:00+09:00",
-  "generated_at": "2026-09-13T05:15:43.297583+00:00",
+  "report_datetime": "2026-09-13T16:07:00+09:00",
+  "generated_at": "2026-09-13T10:22:22.461938+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "feed_updated": "2026-09-09T08:25:26Z",
-      "report_datetime": "2026-09-09T17:25:00+09:00",
+      "feed_updated": "2026-09-13T07:07:19Z",
+      "report_datetime": "2026-09-13T16:07:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260909082527_0_VPWW55_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260913070720_0_VPWW55_170000.xml"
     },
     {
       "product": "VPWW56",
-      "feed_updated": "2026-09-09T07:17:26Z",
-      "report_datetime": "2026-09-09T16:17:00+09:00",
+      "feed_updated": "2026-09-13T07:07:19Z",
+      "report_datetime": "2026-09-13T16:07:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（土砂）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260909071727_0_VPWW56_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260913070720_0_VPWW56_170000.xml"
     },
     {
       "product": "VPWW58",
@@ -56,6 +56,14 @@
       "name": "七尾市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -76,6 +84,14 @@
       "name": "輪島市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -85,6 +101,14 @@
       "code": "1720500",
       "name": "珠洲市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -105,6 +129,14 @@
       "code": "1720700",
       "name": "羽咋市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -186,6 +218,14 @@
       "name": "志賀町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -195,6 +235,14 @@
       "code": "1738600",
       "name": "宝達志水町",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -206,6 +254,14 @@
       "name": "中能登町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -216,6 +272,14 @@
       "name": "穴水町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -225,6 +289,14 @@
       "code": "1746300",
       "name": "能登町",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
+          "name": "レベル２土砂災害注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
