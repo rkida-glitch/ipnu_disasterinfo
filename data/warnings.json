@@ -1,15 +1,15 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-14T10:20:00+09:00",
-  "generated_at": "2026-09-14T01:43:10.947259+00:00",
+  "report_datetime": "2026-09-14T15:40:00+09:00",
+  "generated_at": "2026-09-14T07:10:02.359804+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "feed_updated": "2026-09-14T01:20:56Z",
-      "report_datetime": "2026-09-14T10:20:00+09:00",
+      "feed_updated": "2026-09-14T06:40:09Z",
+      "report_datetime": "2026-09-14T15:40:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260914012057_0_VPWW55_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260914064010_0_VPWW55_170000.xml"
     },
     {
       "product": "VPWW56",
@@ -46,6 +46,10 @@
       "name": "金沢市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -74,6 +78,10 @@
       "name": "小松市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -85,7 +93,7 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
-          "status": "警報から注意報"
+          "status": "継続"
         },
         {
           "name": "レベル２土砂災害注意報",
@@ -103,7 +111,7 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
-          "status": "警報から注意報"
+          "status": "継続"
         },
         {
           "name": "レベル２土砂災害注意報",
@@ -119,6 +127,10 @@
       "code": "1720600",
       "name": "加賀市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -148,6 +160,10 @@
       "name": "かほく市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -157,6 +173,10 @@
       "code": "1721000",
       "name": "白山市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -168,6 +188,10 @@
       "name": "能美市",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -177,6 +201,10 @@
       "code": "1721200",
       "name": "野々市市",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -188,6 +216,10 @@
       "name": "川北町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -198,6 +230,10 @@
       "name": "津幡町",
       "warnings": [
         {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "継続"
         }
@@ -207,6 +243,10 @@
       "code": "1736500",
       "name": "内灘町",
       "warnings": [
+        {
+          "name": "レベル２大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "継続"
@@ -291,7 +331,7 @@
       "warnings": [
         {
           "name": "レベル２大雨注意報",
-          "status": "警報から注意報"
+          "status": "継続"
         },
         {
           "name": "レベル２土砂災害注意報",
