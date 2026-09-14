@@ -1,15 +1,15 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-14T07:01:00+09:00",
-  "generated_at": "2026-09-13T23:40:44.831810+00:00",
+  "report_datetime": "2026-09-14T10:20:00+09:00",
+  "generated_at": "2026-09-14T01:43:10.947259+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "feed_updated": "2026-09-13T22:01:17Z",
-      "report_datetime": "2026-09-14T07:01:00+09:00",
+      "feed_updated": "2026-09-14T01:20:56Z",
+      "report_datetime": "2026-09-14T10:20:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（大雨）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260913220118_0_VPWW55_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260914012057_0_VPWW55_170000.xml"
     },
     {
       "product": "VPWW56",
@@ -84,8 +84,8 @@
       "name": "輪島市",
       "warnings": [
         {
-          "name": "レベル３大雨警報",
-          "status": "継続"
+          "name": "レベル２大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル２土砂災害注意報",
@@ -102,8 +102,8 @@
       "name": "珠洲市",
       "warnings": [
         {
-          "name": "レベル３大雨警報",
-          "status": "継続"
+          "name": "レベル２大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル２土砂災害注意報",
@@ -290,8 +290,8 @@
       "name": "能登町",
       "warnings": [
         {
-          "name": "レベル３大雨警報",
-          "status": "発表"
+          "name": "レベル２大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル２土砂災害注意報",
