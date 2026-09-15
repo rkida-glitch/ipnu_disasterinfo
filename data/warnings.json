@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-15T16:14:00+09:00",
-  "generated_at": "2026-09-15T10:50:12.954968+00:00",
+  "report_datetime": "2026-09-15T23:46:00+09:00",
+  "generated_at": "2026-09-15T15:19:51.177571+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -13,10 +13,10 @@
     },
     {
       "product": "VPWW56",
-      "feed_updated": "2026-09-15T04:46:58Z",
-      "report_datetime": "2026-09-15T13:46:00+09:00",
+      "feed_updated": "2026-09-15T14:46:05Z",
+      "report_datetime": "2026-09-15T23:46:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（土砂）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260915044659_0_VPWW56_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260915144606_0_VPWW56_170000.xml"
     },
     {
       "product": "VPWW58",
@@ -59,22 +59,12 @@
     {
       "code": "1720400",
       "name": "輪島市",
-      "warnings": [
-        {
-          "name": "レベル２土砂災害注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720500",
       "name": "珠洲市",
-      "warnings": [
-        {
-          "name": "レベル２土砂災害注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720600",
