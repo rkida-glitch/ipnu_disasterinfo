@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA VPWW55-61",
-  "report_datetime": "2026-09-20T21:53:00+09:00",
-  "generated_at": "2026-09-20T21:04:59.286888+00:00",
+  "report_datetime": "2026-09-21T06:13:00+09:00",
+  "generated_at": "2026-09-20T23:12:44.471496+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -20,10 +20,17 @@
     },
     {
       "product": "VPWW58",
-      "feed_updated": "2026-09-20T12:53:41Z",
-      "report_datetime": "2026-09-20T21:53:00+09:00",
+      "feed_updated": "2026-09-20T21:13:10Z",
+      "report_datetime": "2026-09-21T06:13:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（暴風）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260920125341_0_VPWW58_170000.xml"
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260920211310_0_VPWW58_170000.xml"
+    },
+    {
+      "product": "VPWW59",
+      "feed_updated": "2026-09-20T21:13:10Z",
+      "report_datetime": "2026-09-21T06:13:00+09:00",
+      "control_title": "気象警報・注意報（Ｒ０６）（波浪）",
+      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260920211310_0_VPWW59_170000.xml"
     },
     {
       "product": "VPWW61",
@@ -40,6 +47,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -50,7 +61,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -60,6 +71,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -70,7 +85,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -80,7 +95,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -90,6 +105,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -100,7 +119,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -110,6 +129,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -120,6 +143,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -130,6 +157,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -155,6 +186,10 @@
       "warnings": [
         {
           "name": "強風注意報",
+          "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
           "status": "発表"
         }
       ]
@@ -165,7 +200,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -175,14 +210,19 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
     {
       "code": "1740700",
       "name": "中能登町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "強風注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1746100",
@@ -190,7 +230,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -200,7 +240,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     }
