@@ -2,15 +2,8 @@
   "ok": true,
   "source": "JMA VPWW55-61",
   "report_datetime": "2026-09-22T14:44:00+09:00",
-  "generated_at": "2026-09-22T10:59:30.955192+00:00",
+  "generated_at": "2026-09-22T15:29:03.170651+00:00",
   "source_reports": [
-    {
-      "product": "VPWW56",
-      "feed_updated": "2026-09-15T14:46:05Z",
-      "report_datetime": "2026-09-15T23:46:00+09:00",
-      "control_title": "気象警報・注意報（Ｒ０６）（土砂）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260915144606_0_VPWW56_170000.xml"
-    },
     {
       "product": "VPWW58",
       "feed_updated": "2026-09-21T19:28:19Z",
