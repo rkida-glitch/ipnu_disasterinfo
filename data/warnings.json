@@ -2,7 +2,7 @@
   "ok": true,
   "source": "JMA VPWW55-61",
   "report_datetime": "2026-09-22T14:44:00+09:00",
-  "generated_at": "2026-09-22T05:53:45.024697+00:00",
+  "generated_at": "2026-09-22T10:59:30.955192+00:00",
   "source_reports": [
     {
       "product": "VPWW56",
@@ -24,13 +24,6 @@
       "report_datetime": "2026-09-22T14:44:00+09:00",
       "control_title": "気象警報・注意報（Ｒ０６）（波浪）",
       "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260922054423_0_VPWW59_170000.xml"
-    },
-    {
-      "product": "VPWW61",
-      "feed_updated": "2026-09-15T07:14:31Z",
-      "report_datetime": "2026-09-15T16:14:00+09:00",
-      "control_title": "気象警報・注意報（Ｒ０６）（その他注意報）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260915071432_0_VPWW61_170000.xml"
     }
   ],
   "municipalities": [
