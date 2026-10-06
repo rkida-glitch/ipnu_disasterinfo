@@ -1,15 +1,38 @@
 {
   "ok": true,
-  "source": "JMA VPWW55-61",
+  "source": "JMA R8 warning JSON (fallback)",
   "report_datetime": "2026-09-28T23:48:00+09:00",
-  "generated_at": "2026-10-05T09:00:02.554248+00:00",
+  "generated_at": "2026-10-06T07:18:12.506260+00:00",
   "source_reports": [
     {
+      "product": "VPWW55",
+      "report_datetime": "2026-09-28T15:48:00+09:00",
+      "publishing_office": "金沢地方気象台",
+      "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
+    },
+    {
+      "product": "VPWW56",
+      "report_datetime": "2026-09-15T23:46:00+09:00",
+      "publishing_office": "金沢地方気象台",
+      "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
+    },
+    {
+      "product": "VPWW58",
+      "report_datetime": "2026-09-22T04:28:00+09:00",
+      "publishing_office": "金沢地方気象台",
+      "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
+    },
+    {
+      "product": "VPWW59",
+      "report_datetime": "2026-09-22T14:44:00+09:00",
+      "publishing_office": "金沢地方気象台",
+      "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
+    },
+    {
       "product": "VPWW61",
-      "feed_updated": "2026-09-28T14:48:17Z",
       "report_datetime": "2026-09-28T23:48:00+09:00",
-      "control_title": "気象警報・注意報（Ｒ０６）（その他注意報）",
-      "source_url": "https://www.data.jma.go.jp/developer/xml/data/20260928144817_0_VPWW61_170000.xml"
+      "publishing_office": "金沢地方気象台",
+      "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
   ],
   "municipalities": [
