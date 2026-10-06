@@ -1,48 +1,123 @@
 #!/usr/bin/env python3
 import json
 import re
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
+# ----------------------------------------------------------------------
+# JMA sources
+# ----------------------------------------------------------------------
 FEEDS = [
     "https://www.data.jma.go.jp/developer/xml/feed/extra.xml",
     "https://www.data.jma.go.jp/developer/xml/feed/extra_l.xml",
 ]
 
+# Official XML: nationwide, high-frequency aggregate report
+VPWS50_RE = re.compile(r"(VPWS50)_", re.I)
+
+# Fallback used by the current JMA warning web frontend.
+# This is a JMA-hosted web-data endpoint, not a documented public API contract.
+R8_JSON_URL = "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
+
 OUT = Path("data/warnings.json")
+UA = "IPNU-Disaster-Signage/2.0"
 
 ISHIKAWA = {
-    "1720100":"金沢市","1720200":"七尾市","1720300":"小松市",
-    "1720400":"輪島市","1720500":"珠洲市","1720600":"加賀市",
-    "1720700":"羽咋市","1720900":"かほく市","1721000":"白山市",
-    "1721100":"能美市","1721200":"野々市市","1732400":"川北町",
-    "1736100":"津幡町","1736500":"内灘町","1738400":"志賀町",
-    "1738600":"宝達志水町","1740700":"中能登町","1746100":"穴水町",
-    "1746300":"能登町",
+    "1720100": "金沢市",
+    "1720200": "七尾市",
+    "1720300": "小松市",
+    "1720400": "輪島市",
+    "1720500": "珠洲市",
+    "1720600": "加賀市",
+    "1720700": "羽咋市",
+    "1720900": "かほく市",
+    "1721000": "白山市",
+    "1721100": "能美市",
+    "1721200": "野々市市",
+    "1732400": "川北町",
+    "1736100": "津幡町",
+    "1736500": "内灘町",
+    "1738400": "志賀町",
+    "1738600": "宝達志水町",
+    "1740700": "中能登町",
+    "1746100": "穴水町",
+    "1746300": "能登町",
 }
 
-# 2026/5/28以降の新体系。
-# VPWW55–61を対象とし、石川県を含む最新電文をデータ種類ごとに採用する。
-PRODUCT_RE = re.compile(r"(VPWW(?:5[5-9]|60|61))_", re.I)
+# R8 warning code table (used only for JSON fallback)
+WARNING_NAMES = {
+    "02": "暴風雪警報",
+    "03": "レベル3大雨警報",
+    "05": "暴風警報",
+    "06": "大雪警報",
+    "07": "波浪警報",
+    "08": "レベル3高潮警報",
+    "09": "レベル3土砂災害警報",
+    "10": "レベル2大雨注意報",
+    "12": "大雪注意報",
+    "13": "風雪注意報",
+    "14": "雷注意報",
+    "15": "強風注意報",
+    "16": "波浪注意報",
+    "17": "融雪注意報",
+    "19": "レベル2高潮注意報",
+    "20": "濃霧注意報",
+    "21": "乾燥注意報",
+    "22": "なだれ注意報",
+    "23": "低温注意報",
+    "24": "霜注意報",
+    "25": "着氷注意報",
+    "26": "着雪注意報",
+    "27": "その他の注意報",
+    "29": "レベル2土砂災害注意報",
+    "32": "暴風雪特別警報",
+    "33": "レベル5大雨特別警報",
+    "35": "暴風特別警報",
+    "36": "大雪特別警報",
+    "37": "波浪特別警報",
+    "38": "レベル5高潮特別警報",
+    "39": "レベル5土砂災害特別警報",
+    "43": "レベル4大雨危険警報",
+    "48": "レベル4高潮危険警報",
+    "49": "レベル4土砂災害危険警報",
+}
 
-UA = "IPNU-Disaster-Signage/1.2"
+INACTIVE_STATUSES = {
+    "解除",
+    "発表警報・注意報はなし",
+    "発表なし",
+}
 
-def get(url):
-    req = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": UA,
-            "Cache-Control": "no-cache",
-            "Accept": "application/xml,text/xml,*/*",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read()
+
+def get(url, attempts=3, timeout=30):
+    """Fetch bytes with a small retry budget for transient JMA/network errors."""
+    last_error = None
+    for attempt in range(1, attempts + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": UA,
+                    "Cache-Control": "no-cache",
+                    "Pragma": "no-cache",
+                    "Accept": "application/json,application/xml,text/xml,*/*",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read()
+        except Exception as e:
+            last_error = e
+            if attempt < attempts:
+                time.sleep(2 ** (attempt - 1))
+    raise last_error
+
 
 def lname(tag):
     return tag.rsplit("}", 1)[-1]
+
 
 def child_text(node, name):
     for c in list(node):
@@ -50,9 +125,11 @@ def child_text(node, name):
             return (c.text or "").strip()
     return ""
 
+
 def parse_feed(feed_bytes):
     root = ET.fromstring(feed_bytes)
     items = []
+
     for e in root.iter():
         if lname(e.tag) != "entry":
             continue
@@ -66,16 +143,16 @@ def parse_feed(feed_bytes):
                 href = c.attrib["href"]
                 break
 
-        if href:
-            m = PRODUCT_RE.search(href)
-            if m:
-                items.append({
-                    "title": title,
-                    "updated": updated,
-                    "href": href,
-                    "product": m.group(1).upper(),
-                })
+        if href and VPWS50_RE.search(href):
+            items.append({
+                "title": title,
+                "updated": updated,
+                "href": href,
+                "product": "VPWS50",
+            })
+
     return items
+
 
 def report_datetime(root):
     for wanted in ("ReportDateTime", "TargetDateTime", "DateTime"):
@@ -83,6 +160,7 @@ def report_datetime(root):
             if lname(el.tag) == wanted and (el.text or "").strip():
                 return (el.text or "").strip()
     return ""
+
 
 def control_title(root):
     for el in root.iter():
@@ -92,16 +170,17 @@ def control_title(root):
                     return (c.text or "").strip()
     return ""
 
+
 def area_code_from_item(item):
     for c in list(item):
         if lname(c.tag) == "Area":
-            code = child_text(c, "Code")
-            name = child_text(c, "Name")
-            return code, name
+            return child_text(c, "Code"), child_text(c, "Name")
     return "", ""
 
-def extract_kinds(item):
+
+def extract_kinds_xml(item):
     kinds = []
+
     for c in list(item):
         if lname(c.tag) != "Kind":
             continue
@@ -118,57 +197,45 @@ def extract_kinds(item):
         if not name:
             continue
 
-        # 解除・発表なしは表示しない
-        if "解除" in status:
-            continue
-        if "発表警報・注意報はなし" in status:
-            continue
-        if "発表なし" == status:
+        if status in INACTIVE_STATUSES or "解除" in status:
             continue
 
-        # 汎用見出しを除外
         if name in ("気象警報・注意報", "警報・注意報"):
             continue
 
         kinds.append({"name": name, "status": status})
+
     return kinds
 
-def parse_ishikawa(xml_bytes):
+
+def parse_ishikawa_vpws50(xml_bytes):
     root = ET.fromstring(xml_bytes)
-    found = {}
+    found = {code: [] for code in ISHIKAWA}
     encountered_codes = set()
 
     for item in root.iter():
         if lname(item.tag) != "Item":
             continue
 
-        code, area_name = area_code_from_item(item)
+        code, _ = area_code_from_item(item)
         if code not in ISHIKAWA:
             continue
 
         encountered_codes.add(code)
-        warnings = extract_kinds(item)
 
-        if warnings:
-            found.setdefault(code, [])
-            for w in warnings:
-                if w not in found[code]:
-                    found[code].append(w)
+        for w in extract_kinds_xml(item):
+            if w not in found[code]:
+                found[code].append(w)
 
     return {
-        "contains_ishikawa": bool(encountered_codes),
         "encountered_codes": encountered_codes,
         "warnings": found,
         "report_datetime": report_datetime(root),
         "control_title": control_title(root),
     }
 
-def is_ishikawa_url(url):
-    # JMA XML filename末尾の都道府県コード 170000 = 石川県
-    return bool(re.search(r"_170000\.xml(?:$|[?#])", url, re.I))
 
-
-def main():
+def fetch_from_vpws50():
     entries = []
     feed_errors = []
 
@@ -180,146 +247,202 @@ def main():
 
     if not entries:
         raise RuntimeError(
-            "No VPWW55-61 entries found in JMA Atom feed. "
+            "No VPWS50 entries found in JMA Atom feeds. "
             + "; ".join(feed_errors)
         )
 
-    # 新しい順。URL重複を除く。
     entries.sort(key=lambda x: x["updated"], reverse=True)
-    seen_urls = set()
+
+    seen = set()
     unique_entries = []
     for e in entries:
-        if e["href"] in seen_urls:
+        if e["href"] in seen:
             continue
-        seen_urls.add(e["href"])
+        seen.add(e["href"])
         unique_entries.append(e)
 
-    # 全国の電文を上からN件たどるのではなく、URL上で石川県(170000)に
-    # 絞り込んでから処理する。全国的な荒天時でも石川県電文が押し出されない。
-    ishikawa_entries = [e for e in unique_entries if is_ishikawa_url(e["href"])]
+    checked = []
 
-    if not ishikawa_entries:
-        raise RuntimeError(
-            "No Ishikawa (170000) VPWW55-61 entries found in JMA Atom feed."
-        )
-
-    # データ種類ごとに「石川県の最新電文」を1つずつ採用。
-    # 最新候補が想定外形式でも、同じproductの少し古い候補までフォールバックする。
-    selected = {}
-    debug_checked = []
-    attempts_per_product = {}
-
-    for e in ishikawa_entries:
-        product = e["product"]
-
-        if product in selected:
-            continue
-
-        attempts_per_product[product] = attempts_per_product.get(product, 0) + 1
-        if attempts_per_product[product] > 10:
-            continue
-
+    # VPWS50 is a nationwide high-frequency aggregate report.
+    # Try several newest entries in case the latest one is temporarily malformed.
+    for e in unique_entries[:12]:
         try:
-            xml_bytes = get(e["href"])
-            parsed = parse_ishikawa(xml_bytes)
-
-            debug_checked.append(
-                (e["updated"], product, e["title"], parsed["control_title"],
-                 len(parsed["encountered_codes"]), e["href"])
+            parsed = parse_ishikawa_vpws50(get(e["href"]))
+            checked.append(
+                f"{e['updated']} | {parsed['report_datetime']} | "
+                f"{len(parsed['encountered_codes'])} municipalities | {e['href']}"
             )
 
-            if parsed["contains_ishikawa"]:
-                selected[product] = {
-                    "entry": e,
-                    "parsed": parsed,
+            # Require all 19 Ishikawa municipalities to be present.
+            if parsed["encountered_codes"] == set(ISHIKAWA):
+                return {
+                    "source": "JMA VPWS50",
+                    "report_datetime": parsed["report_datetime"] or e["updated"],
+                    "source_reports": [{
+                        "product": "VPWS50",
+                        "feed_updated": e["updated"],
+                        "report_datetime": parsed["report_datetime"],
+                        "control_title": parsed["control_title"],
+                        "source_url": e["href"],
+                    }],
+                    "warnings": parsed["warnings"],
                 }
-
-            # VPWW55-61の7種類を全部取れたら終了
-            if len(selected) >= 7:
-                break
-
         except Exception as ex:
-            debug_checked.append(
-                (e["updated"], product, e["title"], f"ERROR: {ex}", 0, e["href"])
-            )
+            checked.append(f"{e['updated']} | ERROR: {ex} | {e['href']}")
 
-    if not selected:
-        print("Checked Ishikawa VPWW55-61 entries:")
-        for row in debug_checked[-80:]:
-            print(" | ".join(map(str, row)))
-        raise RuntimeError(
-            "No VPWW55-61 document containing Ishikawa municipality codes was found."
-        )
+    raise RuntimeError(
+        "VPWS50 was found, but no recent document contained all 19 Ishikawa "
+        "municipalities. Checked: " + " || ".join(checked[-6:])
+    )
 
-    # 各種類の最新石川県電文をマージ
+
+def parse_r8_json(data_bytes):
+    docs = json.loads(data_bytes)
+
+    if not isinstance(docs, list) or not docs:
+        raise RuntimeError("R8 warning JSON root is not a non-empty list.")
+
     merged = {code: [] for code in ISHIKAWA}
+    encountered_codes = set()
+    report_times = []
     source_reports = []
+    unknown_codes = set()
 
-    for product, obj in sorted(selected.items()):
-        p = obj["parsed"]
-        e = obj["entry"]
+    for doc in docs:
+        if not isinstance(doc, dict):
+            raise RuntimeError("R8 warning JSON contains a non-object item.")
+
+        product = doc.get("dataTypeCode")
+        if not isinstance(product, str):
+            raise RuntimeError("R8 warning JSON item has no dataTypeCode.")
+
+        warning = doc.get("warning")
+        if not isinstance(warning, dict):
+            raise RuntimeError(f"{product}: warning is missing or invalid.")
+
+        items = warning.get("class20Items")
+        if not isinstance(items, list):
+            raise RuntimeError(f"{product}: class20Items is missing or invalid.")
+
+        dt = doc.get("reportDatetime")
+        if isinstance(dt, str) and dt:
+            report_times.append(dt)
 
         source_reports.append({
             "product": product,
-            "feed_updated": e["updated"],
-            "report_datetime": p["report_datetime"],
-            "control_title": p["control_title"],
-            "source_url": e["href"],
+            "report_datetime": dt or "",
+            "publishing_office": doc.get("publishingOffice", ""),
+            "source_url": R8_JSON_URL,
         })
 
-        for code, warnings in p["warnings"].items():
-            for w in warnings:
-                if w not in merged[code]:
-                    merged[code].append(w)
+        for item in items:
+            if not isinstance(item, dict):
+                continue
 
-    # 一番新しいreport datetimeを代表時刻にする
-    report_times = [
-        x["report_datetime"] for x in source_reports if x["report_datetime"]
-    ]
-    feed_times = [
-        x["feed_updated"] for x in source_reports if x["feed_updated"]
-    ]
-    representative_time = (
-        max(report_times) if report_times else
-        max(feed_times) if feed_times else
-        datetime.now(timezone.utc).isoformat()
-    )
+            area_code = str(item.get("areaCode", ""))
+            if area_code not in ISHIKAWA:
+                continue
 
-    payload = {
-        "ok": True,
-        "source": "JMA VPWW55-61",
+            encountered_codes.add(area_code)
+
+            kinds = item.get("kinds", [])
+            if not isinstance(kinds, list):
+                raise RuntimeError(
+                    f"{product}/{area_code}: kinds is not a list."
+                )
+
+            for kind in kinds:
+                if not isinstance(kind, dict):
+                    continue
+
+                status = str(kind.get("status", "")).strip()
+                if status in INACTIVE_STATUSES or "解除" in status:
+                    continue
+
+                code = str(kind.get("code", "")).strip()
+                if not code:
+                    # An active-looking record without a code is suspicious.
+                    raise RuntimeError(
+                        f"{product}/{area_code}: active warning has no code "
+                        f"(status={status!r})."
+                    )
+
+                name = WARNING_NAMES.get(code)
+                if not name:
+                    unknown_codes.add(code)
+                    name = f"警報・注意報（コード{code}）"
+
+                w = {"name": name, "status": status}
+                if w not in merged[area_code]:
+                    merged[area_code].append(w)
+
+    if encountered_codes != set(ISHIKAWA):
+        missing = sorted(set(ISHIKAWA) - encountered_codes)
+        raise RuntimeError(
+            "R8 warning JSON did not contain all Ishikawa municipalities. "
+            f"Missing: {', '.join(missing)}"
+        )
+
+    if unknown_codes:
+        print(
+            "::warning::Unknown active JMA warning code(s): "
+            + ", ".join(sorted(unknown_codes))
+        )
+
+    representative_time = max(report_times) if report_times else ""
+
+    return {
+        "source": "JMA R8 warning JSON (fallback)",
         "report_datetime": representative_time,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_reports": source_reports,
+        "warnings": merged,
+    }
+
+
+def fetch_from_r8_json():
+    return parse_r8_json(get(R8_JSON_URL))
+
+
+def build_payload(source_data):
+    return {
+        "ok": True,
+        "source": source_data["source"],
+        "report_datetime": source_data["report_datetime"],
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_reports": source_data["source_reports"],
         "municipalities": [
             {
                 "code": code,
                 "name": ISHIKAWA[code],
-                "warnings": merged[code],
+                "warnings": source_data["warnings"][code],
             }
             for code in ISHIKAWA
         ],
     }
 
+
+def atomic_write_json(payload):
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(
+    tmp = OUT.with_suffix(".json.tmp")
+    tmp.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+    tmp.replace(OUT)
 
+
+def print_summary(payload):
     print("SUCCESS: Ishikawa warning data generated")
-    print(f"Ishikawa feed entries: {len(ishikawa_entries)}")
-    print("Selected source reports:")
-    for s in source_reports:
-        print(
-            f"- {s['product']} | {s['report_datetime']} | "
-            f"{s['control_title']} | {s['source_url']}"
-        )
+    print("Source:", payload["source"])
+    print("Report datetime:", payload["report_datetime"])
+    print("Generated at:", payload["generated_at"])
 
     active = [
-        (ISHIKAWA[c], [w["name"] for w in merged[c]])
-        for c in ISHIKAWA if merged[c]
+        (m["name"], [w["name"] for w in m["warnings"]])
+        for m in payload["municipalities"]
+        if m["warnings"]
     ]
+
     print("Active warnings/advisories:")
     if active:
         for name, warnings in active:
@@ -329,12 +452,41 @@ def main():
 
     print("Wrote:", OUT)
 
+
+def main():
+    primary_error = None
+
+    try:
+        source_data = fetch_from_vpws50()
+    except Exception as e:
+        primary_error = e
+        print(f"::warning::VPWS50 primary source failed: {e}")
+        print("Falling back to JMA R8 prefecture JSON...")
+        source_data = fetch_from_r8_json()
+
+    payload = build_payload(source_data)
+    atomic_write_json(payload)
+    print_summary(payload)
+
+    if primary_error is not None:
+        print(
+            "::warning::This run succeeded via fallback. "
+            "Review VPWS50 if fallback use continues."
+        )
+
+
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        # 取得失敗時に最後の正常な warnings.json を壊さない。
-        # GitHub Actionsは失敗扱いにして通知し、フロント側は既存JSONを
-        # stale判定（更新時刻が古い）として扱えるようにする。
+        # IMPORTANT:
+        # Do not overwrite a previously valid warnings.json on failure.
+        # The dashboard keeps the last known-good data while GitHub Actions
+        # reports the failure.
         print(f"ERROR: {e}")
+        if OUT.exists():
+            print(
+                "Existing data/warnings.json was preserved "
+                "(last known-good data remains available)."
+            )
         raise
