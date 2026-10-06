@@ -1,8 +1,8 @@
 {
   "ok": true,
-  "source": "JMA R8 warning JSON (fallback)",
+  "source": "JMA R8 warning JSON",
   "report_datetime": "2026-09-28T23:48:00+09:00",
-  "generated_at": "2026-10-06T07:18:12.506260+00:00",
+  "generated_at": "2026-10-06T07:54:08.804732+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
