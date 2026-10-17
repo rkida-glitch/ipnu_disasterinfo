@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-16T18:01:00+09:00",
-  "generated_at": "2026-10-17T18:36:40.158626+00:00",
+  "report_datetime": "2026-10-18T04:20:00+09:00",
+  "generated_at": "2026-10-17T20:57:30.429891+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -30,7 +30,7 @@
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-10-16T16:15:00+09:00",
+      "report_datetime": "2026-10-18T04:20:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -39,7 +39,12 @@
     {
       "code": "1720100",
       "name": "金沢市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1720200",
@@ -49,7 +54,12 @@
     {
       "code": "1720300",
       "name": "小松市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1720400",
@@ -64,7 +74,12 @@
     {
       "code": "1720600",
       "name": "加賀市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1720700",
@@ -74,37 +89,72 @@
     {
       "code": "1720900",
       "name": "かほく市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1721000",
       "name": "白山市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1721100",
       "name": "能美市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1721200",
       "name": "野々市市",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1732400",
       "name": "川北町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1736100",
       "name": "津幡町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1736500",
       "name": "内灘町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "乾燥注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1738400",
