@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-18T16:24:00+09:00",
-  "generated_at": "2026-10-18T09:46:49.895623+00:00",
+  "report_datetime": "2026-10-18T21:12:00+09:00",
+  "generated_at": "2026-10-18T13:37:12.467759+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -30,7 +30,7 @@
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-10-18T04:20:00+09:00",
+      "report_datetime": "2026-10-18T21:12:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -43,10 +43,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
@@ -67,10 +63,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
@@ -109,10 +101,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
@@ -137,10 +125,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
@@ -151,10 +135,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
@@ -165,42 +145,23 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
     {
       "code": "1721200",
       "name": "野々市市",
-      "warnings": [
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1732400",
       "name": "川北町",
-      "warnings": [
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1736100",
       "name": "津幡町",
-      "warnings": [
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1736500",
@@ -209,10 +170,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "乾燥注意報",
-          "status": "発表"
         }
       ]
     },
