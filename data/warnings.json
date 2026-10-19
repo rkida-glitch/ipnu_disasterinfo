@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-19T04:18:00+09:00",
-  "generated_at": "2026-10-18T23:38:53.786605+00:00",
+  "report_datetime": "2026-10-19T10:17:00+09:00",
+  "generated_at": "2026-10-19T01:43:14.661813+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,13 +18,13 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-10-19T04:18:00+09:00",
+      "report_datetime": "2026-10-19T10:17:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-10-18T16:24:00+09:00",
+      "report_datetime": "2026-10-19T10:17:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -40,10 +40,6 @@
       "code": "1720100",
       "name": "金沢市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -69,10 +65,6 @@
       "name": "小松市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -88,7 +80,7 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
@@ -106,7 +98,7 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
@@ -118,10 +110,6 @@
       "code": "1720600",
       "name": "加賀市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -137,10 +125,6 @@
           "status": "継続"
         },
         {
-          "name": "波浪注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -150,10 +134,6 @@
       "code": "1720900",
       "name": "かほく市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -165,10 +145,6 @@
       "name": "白山市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -178,10 +154,6 @@
       "code": "1721100",
       "name": "能美市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -223,10 +195,6 @@
       "name": "内灘町",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -239,10 +207,6 @@
         {
           "name": "強風注意報",
           "status": "継続"
-        },
-        {
-          "name": "波浪注意報",
-          "status": "発表"
         },
         {
           "name": "雷注意報",
@@ -259,10 +223,6 @@
           "status": "継続"
         },
         {
-          "name": "波浪注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -274,7 +234,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
