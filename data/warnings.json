@@ -1,12 +1,12 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-21T05:01:00+09:00",
-  "generated_at": "2026-10-20T20:56:34.343127+00:00",
+  "report_datetime": "2026-10-21T07:06:00+09:00",
+  "generated_at": "2026-10-20T23:43:45.052254+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "report_datetime": "2026-10-21T05:01:00+09:00",
+      "report_datetime": "2026-10-21T07:06:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -24,7 +24,7 @@
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-10-19T16:13:00+09:00",
+      "report_datetime": "2026-10-21T06:23:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -55,8 +55,8 @@
       "name": "七尾市",
       "warnings": [
         {
-          "name": "レベル3大雨警報",
-          "status": "発表"
+          "name": "レベル2大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル2土砂災害注意報",
@@ -103,6 +103,10 @@
           "status": "継続"
         },
         {
+          "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -123,6 +127,10 @@
         {
           "name": "強風注意報",
           "status": "継続"
+        },
+        {
+          "name": "波浪注意報",
+          "status": "発表"
         },
         {
           "name": "雷注意報",
@@ -269,8 +277,8 @@
       "name": "志賀町",
       "warnings": [
         {
-          "name": "レベル3大雨警報",
-          "status": "発表"
+          "name": "レベル2大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル2土砂災害注意報",
@@ -313,8 +321,8 @@
       "name": "中能登町",
       "warnings": [
         {
-          "name": "レベル3大雨警報",
-          "status": "発表"
+          "name": "レベル2大雨注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "レベル2土砂災害注意報",
