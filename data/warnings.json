@@ -1,24 +1,24 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-21T21:04:00+09:00",
-  "generated_at": "2026-10-21T13:10:32.463861+00:00",
+  "report_datetime": "2026-10-22T00:00:00+09:00",
+  "generated_at": "2026-10-21T18:04:13.991421+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "report_datetime": "2026-10-21T20:58:00+09:00",
+      "report_datetime": "2026-10-22T00:00:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW56",
-      "report_datetime": "2026-10-21T20:58:00+09:00",
+      "report_datetime": "2026-10-22T00:00:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-10-21T21:04:00+09:00",
+      "report_datetime": "2026-10-21T23:42:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -49,16 +49,7 @@
     {
       "code": "1720200",
       "name": "七尾市",
-      "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720300",
@@ -75,14 +66,6 @@
       "name": "輪島市",
       "warnings": [
         {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -92,14 +75,6 @@
       "code": "1720500",
       "name": "珠洲市",
       "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -120,18 +95,6 @@
       "code": "1720700",
       "name": "羽咋市",
       "warnings": [
-        {
-          "name": "レベル2大雨注意報",
-          "status": "継続"
-        },
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -198,14 +161,6 @@
       "name": "志賀町",
       "warnings": [
         {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -216,14 +171,6 @@
       "name": "宝達志水町",
       "warnings": [
         {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -232,40 +179,17 @@
     {
       "code": "1740700",
       "name": "中能登町",
-      "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1746100",
       "name": "穴水町",
-      "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1746300",
       "name": "能登町",
-      "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     }
   ]
 }
