@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-22T00:00:00+09:00",
-  "generated_at": "2026-10-22T04:55:31.330332+00:00",
+  "report_datetime": "2026-10-22T16:37:00+09:00",
+  "generated_at": "2026-10-22T09:53:49.386812+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -24,7 +24,7 @@
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-10-21T18:21:00+09:00",
+      "report_datetime": "2026-10-22T16:37:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -39,12 +39,7 @@
     {
       "code": "1720100",
       "name": "金沢市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720200",
@@ -54,82 +49,42 @@
     {
       "code": "1720300",
       "name": "小松市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720400",
       "name": "輪島市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720500",
       "name": "珠洲市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720600",
       "name": "加賀市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720700",
       "name": "羽咋市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720900",
       "name": "かほく市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1721000",
       "name": "白山市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1721100",
       "name": "能美市",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1721200",
@@ -149,32 +104,17 @@
     {
       "code": "1736500",
       "name": "内灘町",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1738400",
       "name": "志賀町",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1738600",
       "name": "宝達志水町",
-      "warnings": [
-        {
-          "name": "波浪注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1740700",
