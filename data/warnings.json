@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-25T15:41:00+09:00",
-  "generated_at": "2026-10-25T07:00:05.643219+00:00",
+  "report_datetime": "2026-10-25T19:45:00+09:00",
+  "generated_at": "2026-10-25T12:31:02.676052+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -12,7 +12,7 @@
     },
     {
       "product": "VPWW56",
-      "report_datetime": "2026-10-25T15:40:00+09:00",
+      "report_datetime": "2026-10-25T19:45:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -59,12 +59,7 @@
     {
       "code": "1720500",
       "name": "珠洲市",
-      "warnings": [
-        {
-          "name": "レベル2土砂災害注意報",
-          "status": "継続"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720600",
