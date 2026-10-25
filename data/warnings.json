@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-24T23:41:00+09:00",
-  "generated_at": "2026-10-24T23:48:04.465647+00:00",
+  "report_datetime": "2026-10-25T10:23:00+09:00",
+  "generated_at": "2026-10-25T01:48:05.482116+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,7 +18,7 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-10-24T15:58:00+09:00",
+      "report_datetime": "2026-10-25T10:23:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -45,10 +45,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -63,10 +59,6 @@
           "status": "継続"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -78,10 +70,6 @@
       "warnings": [
         {
           "name": "レベル2大雨注意報",
-          "status": "発表"
-        },
-        {
-          "name": "強風注意報",
           "status": "発表"
         },
         {
@@ -103,10 +91,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -125,10 +109,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -140,10 +120,6 @@
       "warnings": [
         {
           "name": "レベル2大雨注意報",
-          "status": "発表"
-        },
-        {
-          "name": "強風注意報",
           "status": "発表"
         },
         {
@@ -161,10 +137,6 @@
           "status": "継続"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -176,10 +148,6 @@
       "warnings": [
         {
           "name": "レベル2大雨注意報",
-          "status": "発表"
-        },
-        {
-          "name": "強風注意報",
           "status": "発表"
         },
         {
@@ -197,10 +165,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -212,10 +176,6 @@
       "warnings": [
         {
           "name": "レベル2大雨注意報",
-          "status": "発表"
-        },
-        {
-          "name": "強風注意報",
           "status": "発表"
         },
         {
@@ -275,10 +235,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -293,10 +249,6 @@
           "status": "継続"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -309,10 +261,6 @@
         {
           "name": "レベル2大雨注意報",
           "status": "継続"
-        },
-        {
-          "name": "強風注意報",
-          "status": "発表"
         },
         {
           "name": "雷注意報",
@@ -347,10 +295,6 @@
           "status": "発表"
         },
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -366,10 +310,6 @@
         },
         {
           "name": "レベル2土砂災害注意報",
-          "status": "発表"
-        },
-        {
-          "name": "強風注意報",
           "status": "発表"
         },
         {
