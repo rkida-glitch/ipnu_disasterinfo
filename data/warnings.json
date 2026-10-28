@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-28T04:24:00+09:00",
-  "generated_at": "2026-10-28T00:18:14.064338+00:00",
+  "report_datetime": "2026-10-28T14:32:00+09:00",
+  "generated_at": "2026-10-28T05:56:32.432969+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -30,7 +30,7 @@
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-10-28T04:24:00+09:00",
+      "report_datetime": "2026-10-28T14:32:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -42,6 +42,10 @@
       "warnings": [
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -57,6 +61,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -66,6 +74,10 @@
       "warnings": [
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -81,6 +93,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -95,6 +111,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -104,6 +124,10 @@
       "warnings": [
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -119,6 +143,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -128,6 +156,10 @@
       "warnings": [
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -139,6 +171,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -148,6 +184,10 @@
       "warnings": [
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -165,7 +205,12 @@
     {
       "code": "1736100",
       "name": "津幡町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "霜注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1736500",
@@ -188,6 +233,10 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
@@ -202,13 +251,22 @@
         {
           "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "霜注意報",
+          "status": "発表"
         }
       ]
     },
     {
       "code": "1740700",
       "name": "中能登町",
-      "warnings": []
+      "warnings": [
+        {
+          "name": "霜注意報",
+          "status": "発表"
+        }
+      ]
     },
     {
       "code": "1746100",
@@ -220,6 +278,10 @@
         },
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
@@ -234,6 +296,10 @@
         },
         {
           "name": "波浪注意報",
+          "status": "発表"
+        },
+        {
+          "name": "霜注意報",
           "status": "発表"
         }
       ]
