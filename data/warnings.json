@@ -1,12 +1,12 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-10-30T10:14:00+09:00",
-  "generated_at": "2026-10-30T11:38:48.461566+00:00",
+  "report_datetime": "2026-10-30T21:32:00+09:00",
+  "generated_at": "2026-10-30T17:12:24.383585+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
-      "report_datetime": "2026-10-25T14:34:00+09:00",
+      "report_datetime": "2026-10-30T21:32:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -50,6 +50,10 @@
       "code": "1720200",
       "name": "七尾市",
       "warnings": [
+        {
+          "name": "レベル2大雨注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
