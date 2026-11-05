@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-05T16:17:00+09:00",
-  "generated_at": "2026-11-05T07:51:52.367669+00:00",
+  "report_datetime": "2026-11-05T21:19:00+09:00",
+  "generated_at": "2026-11-05T15:59:10.373153+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,7 +18,7 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-10-30T10:14:00+09:00",
+      "report_datetime": "2026-11-05T21:19:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -51,6 +51,10 @@
       "name": "七尾市",
       "warnings": [
         {
+          "name": "強風注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -71,6 +75,10 @@
       "name": "輪島市",
       "warnings": [
         {
+          "name": "強風注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -80,6 +88,10 @@
       "code": "1720500",
       "name": "珠洲市",
       "warnings": [
+        {
+          "name": "強風注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -100,6 +112,10 @@
       "code": "1720700",
       "name": "羽咋市",
       "warnings": [
+        {
+          "name": "強風注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -181,6 +197,10 @@
       "name": "志賀町",
       "warnings": [
         {
+          "name": "強風注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -190,6 +210,10 @@
       "code": "1738600",
       "name": "宝達志水町",
       "warnings": [
+        {
+          "name": "強風注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
@@ -211,6 +235,10 @@
       "name": "穴水町",
       "warnings": [
         {
+          "name": "強風注意報",
+          "status": "発表"
+        },
+        {
           "name": "雷注意報",
           "status": "発表"
         }
@@ -220,6 +248,10 @@
       "code": "1746300",
       "name": "能登町",
       "warnings": [
+        {
+          "name": "強風注意報",
+          "status": "発表"
+        },
         {
           "name": "雷注意報",
           "status": "発表"
