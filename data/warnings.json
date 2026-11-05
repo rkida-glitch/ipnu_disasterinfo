@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-05T21:19:00+09:00",
-  "generated_at": "2026-11-05T15:59:10.373153+00:00",
+  "report_datetime": "2026-11-06T04:17:00+09:00",
+  "generated_at": "2026-11-05T21:54:51.831479+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,7 +18,7 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-11-05T21:19:00+09:00",
+      "report_datetime": "2026-11-06T04:17:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -30,7 +30,7 @@
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-11-05T16:17:00+09:00",
+      "report_datetime": "2026-11-06T04:17:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -41,7 +41,7 @@
       "name": "金沢市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -52,11 +52,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -65,7 +61,7 @@
       "name": "小松市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -76,11 +72,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -90,11 +82,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -103,7 +91,7 @@
       "name": "加賀市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -114,11 +102,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -127,7 +111,7 @@
       "name": "かほく市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -137,7 +121,7 @@
       "name": "白山市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -147,7 +131,7 @@
       "name": "能美市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -157,7 +141,7 @@
       "name": "野々市市",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -167,7 +151,7 @@
       "name": "川北町",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -177,7 +161,7 @@
       "name": "津幡町",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -187,7 +171,7 @@
       "name": "内灘町",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -198,11 +182,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -212,11 +192,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -225,7 +201,7 @@
       "name": "中能登町",
       "warnings": [
         {
-          "name": "雷注意報",
+          "name": "強風注意報",
           "status": "発表"
         }
       ]
@@ -236,11 +212,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -250,11 +222,7 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
-        },
-        {
-          "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     }
