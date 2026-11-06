@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-06T10:22:00+09:00",
-  "generated_at": "2026-11-06T02:01:28.046219+00:00",
+  "report_datetime": "2026-11-06T16:15:00+09:00",
+  "generated_at": "2026-11-06T09:17:04.496662+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,19 +18,19 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-11-06T04:17:00+09:00",
+      "report_datetime": "2026-11-06T16:15:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-11-06T10:22:00+09:00",
+      "report_datetime": "2026-11-06T16:15:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-11-06T10:22:00+09:00",
+      "report_datetime": "2026-11-06T16:15:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -42,15 +42,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -63,8 +63,12 @@
           "status": "継続"
         },
         {
-          "name": "雷注意報",
+          "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
         }
       ]
     },
@@ -74,15 +78,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -96,11 +100,11 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -114,11 +118,11 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -128,15 +132,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -150,11 +154,11 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -164,15 +168,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -182,15 +186,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -200,15 +204,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -218,11 +222,11 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -232,11 +236,11 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -246,11 +250,11 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -260,15 +264,15 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -282,11 +286,11 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -300,11 +304,11 @@
         },
         {
           "name": "波浪注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -314,11 +318,11 @@
       "warnings": [
         {
           "name": "強風注意報",
-          "status": "発表"
+          "status": "継続"
         },
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -331,8 +335,12 @@
           "status": "継続"
         },
         {
-          "name": "雷注意報",
+          "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
         }
       ]
     },
@@ -345,8 +353,12 @@
           "status": "継続"
         },
         {
-          "name": "雷注意報",
+          "name": "波浪注意報",
           "status": "発表"
+        },
+        {
+          "name": "雷注意報",
+          "status": "継続"
         }
       ]
     }
