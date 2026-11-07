@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-07T17:53:00+09:00",
-  "generated_at": "2026-11-07T14:22:42.025776+00:00",
+  "report_datetime": "2026-11-07T23:52:00+09:00",
+  "generated_at": "2026-11-07T18:58:01.103464+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -24,7 +24,7 @@
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-11-07T04:10:00+09:00",
+      "report_datetime": "2026-11-07T23:52:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -71,8 +71,8 @@
       "name": "輪島市",
       "warnings": [
         {
-          "name": "波浪警報",
-          "status": "発表"
+          "name": "波浪注意報",
+          "status": "警報から注意報"
         }
       ]
     },
@@ -81,8 +81,8 @@
       "name": "珠洲市",
       "warnings": [
         {
-          "name": "波浪警報",
-          "status": "発表"
+          "name": "波浪注意報",
+          "status": "警報から注意報"
         }
       ]
     },
