@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-12T18:05:00+09:00",
-  "generated_at": "2026-11-12T16:49:59.028541+00:00",
+  "report_datetime": "2026-11-13T04:42:00+09:00",
+  "generated_at": "2026-11-12T22:28:42.686437+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -30,7 +30,7 @@
     },
     {
       "product": "VPWW61",
-      "report_datetime": "2026-11-12T18:05:00+09:00",
+      "report_datetime": "2026-11-13T04:42:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     }
@@ -40,6 +40,10 @@
       "code": "1720100",
       "name": "金沢市",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -52,7 +56,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -60,6 +64,10 @@
       "code": "1720300",
       "name": "小松市",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -72,7 +80,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -82,7 +90,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -90,6 +98,10 @@
       "code": "1720600",
       "name": "加賀市",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -102,7 +114,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -110,6 +122,10 @@
       "code": "1720900",
       "name": "かほく市",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -121,6 +137,10 @@
       "name": "白山市",
       "warnings": [
         {
+          "name": "雷注意報",
+          "status": "発表"
+        },
+        {
           "name": "乾燥注意報",
           "status": "継続"
         }
@@ -130,6 +150,10 @@
       "code": "1721100",
       "name": "能美市",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -141,6 +165,10 @@
       "name": "野々市市",
       "warnings": [
         {
+          "name": "雷注意報",
+          "status": "発表"
+        },
+        {
           "name": "乾燥注意報",
           "status": "継続"
         }
@@ -150,6 +178,10 @@
       "code": "1732400",
       "name": "川北町",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -161,6 +193,10 @@
       "name": "津幡町",
       "warnings": [
         {
+          "name": "雷注意報",
+          "status": "発表"
+        },
+        {
           "name": "乾燥注意報",
           "status": "継続"
         }
@@ -170,6 +206,10 @@
       "code": "1736500",
       "name": "内灘町",
       "warnings": [
+        {
+          "name": "雷注意報",
+          "status": "発表"
+        },
         {
           "name": "乾燥注意報",
           "status": "継続"
@@ -182,7 +222,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -192,7 +232,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -202,7 +242,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -212,7 +252,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     },
@@ -222,7 +262,7 @@
       "warnings": [
         {
           "name": "雷注意報",
-          "status": "発表"
+          "status": "継続"
         }
       ]
     }
