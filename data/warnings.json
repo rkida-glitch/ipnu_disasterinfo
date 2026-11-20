@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-20T07:51:00+09:00",
-  "generated_at": "2026-11-20T02:22:51.393805+00:00",
+  "report_datetime": "2026-11-20T16:14:00+09:00",
+  "generated_at": "2026-11-20T10:16:59.598554+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,13 +18,13 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-11-20T07:51:00+09:00",
+      "report_datetime": "2026-11-20T16:14:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-11-20T07:51:00+09:00",
+      "report_datetime": "2026-11-20T16:14:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -41,8 +41,8 @@
       "name": "金沢市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -59,8 +59,8 @@
       "name": "七尾市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪注意報",
@@ -81,8 +81,8 @@
           "status": "発表"
         },
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -99,8 +99,8 @@
       "name": "輪島市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -121,8 +121,8 @@
           "status": "発表"
         },
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -143,8 +143,8 @@
           "status": "発表"
         },
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -161,8 +161,8 @@
       "name": "羽咋市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -179,8 +179,8 @@
       "name": "かほく市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -201,8 +201,8 @@
           "status": "発表"
         },
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -219,8 +219,8 @@
       "name": "能美市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -237,8 +237,8 @@
       "name": "野々市市",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "雷注意報",
@@ -251,8 +251,8 @@
       "name": "川北町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "雷注意報",
@@ -265,8 +265,8 @@
       "name": "津幡町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "雷注意報",
@@ -279,8 +279,8 @@
       "name": "内灘町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -297,8 +297,8 @@
       "name": "志賀町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -315,8 +315,8 @@
       "name": "宝達志水町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪警報",
@@ -333,8 +333,8 @@
       "name": "中能登町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "雷注意報",
@@ -347,8 +347,8 @@
       "name": "穴水町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪注意報",
@@ -365,8 +365,8 @@
       "name": "能登町",
       "warnings": [
         {
-          "name": "暴風警報",
-          "status": "発表"
+          "name": "強風注意報",
+          "status": "警報から注意報"
         },
         {
           "name": "波浪注意報",
