@@ -1,8 +1,8 @@
 {
   "ok": true,
   "source": "JMA R8 warning JSON",
-  "report_datetime": "2026-11-25T23:38:00+09:00",
-  "generated_at": "2026-11-25T20:07:10.810834+00:00",
+  "report_datetime": "2026-11-26T11:34:00+09:00",
+  "generated_at": "2026-11-26T02:49:52.010884+00:00",
   "source_reports": [
     {
       "product": "VPWW55",
@@ -18,13 +18,13 @@
     },
     {
       "product": "VPWW58",
-      "report_datetime": "2026-11-25T15:48:00+09:00",
+      "report_datetime": "2026-11-26T11:34:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
     {
       "product": "VPWW59",
-      "report_datetime": "2026-11-25T23:38:00+09:00",
+      "report_datetime": "2026-11-26T11:34:00+09:00",
       "publishing_office": "金沢地方気象台",
       "source_url": "https://www.jma.go.jp/bosai/warning/data/r8/170000.json"
     },
@@ -41,10 +41,6 @@
       "name": "金沢市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -53,21 +49,12 @@
     {
       "code": "1720200",
       "name": "七尾市",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1720300",
       "name": "小松市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -79,10 +66,6 @@
       "name": "輪島市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -92,10 +75,6 @@
       "code": "1720500",
       "name": "珠洲市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -107,10 +86,6 @@
       "name": "加賀市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -120,10 +95,6 @@
       "code": "1720700",
       "name": "羽咋市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -135,10 +106,6 @@
       "name": "かほく市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -149,10 +116,6 @@
       "name": "白山市",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -162,10 +125,6 @@
       "code": "1721100",
       "name": "能美市",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -192,10 +151,6 @@
       "name": "内灘町",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -206,10 +161,6 @@
       "name": "志賀町",
       "warnings": [
         {
-          "name": "強風注意報",
-          "status": "発表"
-        },
-        {
           "name": "波浪注意報",
           "status": "継続"
         }
@@ -219,10 +170,6 @@
       "code": "1738600",
       "name": "宝達志水町",
       "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        },
         {
           "name": "波浪注意報",
           "status": "継続"
@@ -237,22 +184,12 @@
     {
       "code": "1746100",
       "name": "穴水町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     },
     {
       "code": "1746300",
       "name": "能登町",
-      "warnings": [
-        {
-          "name": "強風注意報",
-          "status": "発表"
-        }
-      ]
+      "warnings": []
     }
   ]
 }
